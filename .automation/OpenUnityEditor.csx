@@ -4,4 +4,4 @@
 UnityService.OpenProject(new ProjectConfig { Namespace = GetNamespace() });
 
 string GetNamespace() =>
-    Path.GetFileName(Directory.EnumerateDirectories(".", "Sandbox.*").First()).Split(".")[1];
+    string.Join(".", Path.GetFileName(Directory.EnumerateDirectories(".", "Sandbox.*").First()).Split(".").Skip(1));
