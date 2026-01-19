@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package generated;
+option csharp_namespace = "Collektive.Unity.Generated";
 
 enum Period {
   TRIASSIC = 0;
