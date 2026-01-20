@@ -33,6 +33,11 @@ interface NetworkManager {
     fun registerNode(id: Int)
 
     /**
+     * Unregisters a node in the global network.
+     */
+    fun unregisterNode(id: Int)
+
+    /**
      * Send the message from local id.
      */
     fun send(local: Int, envelope: OutboundEnvelope<Int>)
@@ -58,38 +63,47 @@ interface NetworkManager {
 class NetworkManagerImpl : NetworkManager {
 
     private val adjacencyMap = mutableMapOf<Int, MutableSet<Int>>()
-    private val messageBuffer = mutableMapOf<Int, Message<Int, *>>()
+    private val outboxes = mutableMapOf<Int, OutboundEnvelope<Int>>()
+    private val lock = Lock()
 
     override fun registerNode(id: Int) {
         adjacencyMap.getOrPut(id) { mutableSetOf() }
     }
 
-    override fun send(local: Int, envelope: OutboundEnvelope<Int>) {
-        adjacencyMap[local]?.forEach {
-           val message = envelope.prepareMessageFor(local)
-            val inboundForNeighbor = messageBuffer.getOrPut(it) { mutableMapOf() }
-            inboundForNeighbor[local] = message
-        }
+    override fun unregisterNode(id: Int) {
+        outboxes.remove(id)
+        adjacencyMap.remove(id)
+        adjacencyMap.values
+            .filter { it.contains(id) }
+            .forEach { it.remove(id) }
     }
 
-    override fun receiveMessageFor(id: Int): NeighborsData<Int> {
-        val neighbors = adjacencyMap[id] ?: return NoNeighborsData()
-        return NeighborsDataImpl(
+    override fun send(local: Int, envelope: OutboundEnvelope<Int>) = lock.withLock {
+        outboxes[local] = envelope
+    }
+
+    override fun receiveMessageFor(id: Int): NeighborsData<Int> = lock.withLock {
+        val neighbors = adjacencyMap[id] ?: return@withLock NoNeighborsData()
+        return@withLock NeighborsDataImpl(
             neighbors,
-            messageBuffer
+            neighbors.mapNotNull {nbrId ->
+                outboxes[nbrId]?.let { envelope ->
+                    nbrId to envelope.prepareMessageFor(id)
+                }
+            }.toMap()
         )
     }
 
-    override fun removeConnection(node1: Int, node2: Int): Boolean {
+    override fun removeConnection(node1: Int, node2: Int): Boolean = lock.withLock {
         val r1 = adjacencyMap[node1]?.remove(node2) ?: false
         val r2 = adjacencyMap[node2]?.remove(node1) ?: false
-        return r1 || r2
+        return@withLock r1 || r2
     }
 
-    override fun addConnection(node1: Int, node2: Int): Boolean {
+    override fun addConnection(node1: Int, node2: Int): Boolean = lock.withLock {
         val a1 = adjacencyMap.getOrPut(node1) { mutableSetOf() }.add(node2)
         val a2 = adjacencyMap.getOrPut(node2) { mutableSetOf() }.add(node1)
-        return a1 || a2
+        return@withLock a1 || a2
     }
 }
 
