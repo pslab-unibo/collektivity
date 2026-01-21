@@ -32,6 +32,12 @@ kotlin {
                 implementation("com.squareup.wire:wire-runtime:5.1.0")
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
         val nativeMain by getting
+        val nativeTest by getting
     }
 }
