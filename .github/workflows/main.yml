@@ -146,6 +146,7 @@ jobs:
         uses: game-ci/unity-builder@v4
         with:
           projectPath: ./Sandbox.Collektive.Unity
+          allowDirtyBuild: true
           customParameters: -executeMethod UnityEditor.SyncVS.SyncSolution -quit
       - name: Download Test Results
         uses: actions/download-artifact@v7
