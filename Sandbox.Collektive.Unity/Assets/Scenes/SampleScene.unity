@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: unibo.collektive.unity::Collektive.Unity.SimulationManager
   totalNodes: 0
-  deltaTime: 0.02
+  deltaTime: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

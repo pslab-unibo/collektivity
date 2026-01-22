@@ -43,7 +43,8 @@ fun step(
     pointers: CPointer<CPointerVar<ByteVar>>?,
     sizes: CPointer<IntVar>?,
     outputSizes: CPointer<IntVar>?
-): CPointer<CPointerVar<ByteVar>> {
+): CPointer<CPointerVar<ByteVar>>? {
+    try {
     requireEngine()
     require(pointers != null || sizes != null || outputSizes != null)
     { "Invalid data passed to step function. Pointers or sizes are null" }
@@ -54,9 +55,14 @@ fun step(
         require(dataPtr != null) { "A value inside the data pointers list was null (index: $i)" }
         SensorData.ADAPTER.decode(dataPtr.readBytes(dataSize))
     }
-    val nodeStates = engine?.step(sensingData)!!
+    var nodeStates = listOf<NodeState>()
+       nodeStates = engine?.step(sensingData)!!
     val results: List<ByteArray> = nodeStates.map { NodeState.ADAPTER.encode(it) }
     return prepareReturnData(results, outputSizes)
+    } catch(e: Throwable) {
+       println("ERROR: ${e.message}")
+    }
+    return null
 }
 
 @OptIn(ExperimentalForeignApi::class)

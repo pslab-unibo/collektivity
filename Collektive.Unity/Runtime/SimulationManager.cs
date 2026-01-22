@@ -28,18 +28,19 @@ namespace Collektive.Unity
             EngineNativeApi.Initialize(
                 new GlobalData { TotalNodes = nodes.Length, DeltaTime = deltaTime }
             );
-            Physics.simulationMode = SimulationMode.Script;
+            EngineNativeApi.Step(new List<SensorData>());
         }
 
         private void FixedUpdate()
         {
-            var sensing = new List<SensorData>();
-            foreach (var node in _nodes)
-                sensing.Add(node.Sense());
-            var states = EngineNativeApi.Step(sensing);
-            for (var i = 0; i < _nodes.Count; i++)
-                _nodes[i].OnStateReceived?.Invoke(states[i]);
-            Physics.Simulate(deltaTime);
+            //var sensing = new List<SensorData>();
+            //foreach (var node in _nodes)
+            //sensing.Add(node.Sense());
+            //var states = EngineNativeApi.Step(sensing);
+            //var states = new List<NodeState>();
+            //for (var i = 0; i < _nodes.Count; i++)
+            //_nodes[i].OnStateReceived?.Invoke(states[i]);
+            //Physics.Simulate(deltaTime);
         }
 
         public bool AddConnection(int node1, int node2) =>
