@@ -22,10 +22,14 @@ namespace Collektive.Unity
         [SerializeField, Tooltip("Set to true to pause global simulation")]
         private bool globalSimulationPaused = false;
 
+        [SerializeField, Tooltip("The master seed from which every random generator begins")]
+        private int masterSeed = 42;
+
         private List<Node> _nodes = new();
         private LinkManager _linkManager;
 
         public GlobalData GlobalData { get; private set; }
+        public int MasterSeed => masterSeed;
 
         private void Awake()
         {
@@ -37,10 +41,7 @@ namespace Collektive.Unity
             GlobalData = new GlobalData { TotalNodes = nodes.Length, DeltaTime = deltaTime };
             EngineNativeApi.Initialize(GlobalData);
             for (var i = 0; i < _nodes.Count; i++)
-            {
-                _nodes[i].Id = i;
-                _nodes[i].name = $"node {i}";
-            }
+                _nodes[i].Init(i);
             Physics.simulationMode = SimulationMode.Script;
             Time.timeScale = 0f;
         }
