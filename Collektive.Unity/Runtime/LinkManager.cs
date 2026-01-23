@@ -25,7 +25,7 @@ namespace Collektive.Unity
             var key = GetOrderedPair(node1, node2);
             if (_connections.ContainsKey(key))
                 return;
-            var lineObj = new GameObject($"Link_{node1}_{node2}");
+            var lineObj = new GameObject($"link {node1}-{node2}");
             lineObj.transform.SetParent(transform);
             var lineRenderer = lineObj.AddComponent<LineRenderer>();
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));

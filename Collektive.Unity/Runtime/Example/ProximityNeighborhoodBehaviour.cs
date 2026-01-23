@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Collektive.Unity.Example
 {
-    [RequireComponent(typeof(Collider), typeof(Node))]
+    [RequireComponent(typeof(Collider))]
     public class ProximityNeighborhoodBehaviour : MonoBehaviour
     {
         private Collider _collider;
@@ -11,7 +11,7 @@ namespace Collektive.Unity.Example
         private void Start()
         {
             _collider = GetComponent<Collider>();
-            _node = GetComponent<Node>();
+            _node = GetComponentInParent<Node>();
         }
 
         private void OnTriggerEnter(Collider other)
