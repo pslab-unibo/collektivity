@@ -28,6 +28,7 @@ namespace Collektive.Unity
             EngineNativeApi.Initialize(
                 new GlobalData { TotalNodes = nodes.Length, DeltaTime = deltaTime }
             );
+            Physics.simulationMode = SimulationMode.Script;
         }
 
         private void FixedUpdate()
