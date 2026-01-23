@@ -15,7 +15,12 @@ namespace Collektive.Unity.Native
         private static extern void Initialize(IntPtr dataPointer, int dataSize);
 
         [DllImport(LibName, EntryPoint = "step", CallingConvention = CallingConvention.Cdecl)]
-        private static extern IntPtr Step(IntPtr[] pointers, int[] sizes, [Out] int[] outputSizes);
+        private static extern IntPtr Step(
+            int id,
+            byte[] sensorData,
+            int dataSize,
+            out int outputSize
+        );
 
         [DllImport(
             LibName,
@@ -40,10 +45,10 @@ namespace Collektive.Unity.Native
 
         [DllImport(
             LibName,
-            EntryPoint = "free_results",
+            EntryPoint = "free_result",
             CallingConvention = CallingConvention.Cdecl
         )]
-        private static extern void FreeResults(IntPtr pointers, int count);
+        private static extern void FreeResult(IntPtr pointer);
 
         public static void Initialize(GlobalData globalData)
         {
@@ -60,42 +65,21 @@ namespace Collektive.Unity.Native
             }
         }
 
-        public static List<NodeState> Step(List<SensorData> sensingData)
+        public static NodeState Step(int id, SensorData sensingData)
         {
-            var count = sensingData.Count;
-            var pointers = new IntPtr[count];
-            var sizes = new int[count];
-            var outputSizes = new int[count];
-            var handles = new GCHandle[count];
+            var encodedSensing = sensingData.ToByteArray();
+            var resultPtr = Step(id, encodedSensing, encodedSensing.Length, out int outputSize);
+            if (resultPtr == IntPtr.Zero)
+                return null;
             try
             {
-                for (int i = 0; i < count; i++)
-                {
-                    var bytes = sensingData[i].ToByteArray();
-                    handles[i] = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-                    pointers[i] = handles[i].AddrOfPinnedObject();
-                    sizes[i] = bytes.Length;
-                }
-                var resultPtrArray = Step(pointers, sizes, outputSizes);
-                if (resultPtrArray == IntPtr.Zero)
-                    throw new InvalidOperationException("Result returned by the backend was null");
-                var nodeDataPtrs = new IntPtr[count];
-                Marshal.Copy(resultPtrArray, nodeDataPtrs, 0, count);
-                var results = new List<NodeState>();
-                for (var i = 0; i < count; i++)
-                {
-                    var managedBytes = new byte[outputSizes[i]];
-                    Marshal.Copy(nodeDataPtrs[i], managedBytes, 0, outputSizes[i]);
-                    results.Add(NodeState.Parser.ParseFrom(managedBytes));
-                }
-                FreeResults(resultPtrArray, count);
-                return results;
+                var managedBuffer = new byte[outputSize];
+                Marshal.Copy(resultPtr, managedBuffer, 0, outputSize);
+                return NodeState.Parser.ParseFrom(managedBuffer);
             }
             finally
             {
-                foreach (var h in handles)
-                    if (h.IsAllocated)
-                        h.Free();
+                FreeResult(resultPtr);
             }
         }
 
