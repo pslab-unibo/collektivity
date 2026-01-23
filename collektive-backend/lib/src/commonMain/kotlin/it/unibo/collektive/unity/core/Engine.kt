@@ -11,7 +11,7 @@ import it.unibo.collektive.unity.schema.SensorData
 
 interface Engine {
     val globalData: GlobalData
-    fun step(sensing: List<SensorData>): List<NodeState>
+    fun step(id: Int, sensorData: SensorData): NodeState
     fun addConnection(node1: Int, node2: Int): Boolean
     fun removeConnection(node1: Int, node2: Int): Boolean
     fun updateGlobalData(data: CustomGlobalData)
@@ -19,20 +19,20 @@ interface Engine {
 
 class EngineImpl(private val nm: NetworkManager, private var internalGlobalData: GlobalData) : Engine {
 
-    override val globalData: GlobalData = internalGlobalData
-    private var currentSensing: List<SensorData>? = null
+    override val globalData: GlobalData get() = internalGlobalData
+    private var currentSensing: MutableMap<Int, SensorData> = mutableMapOf()
     private val nodes: List<Collektive<Int, NodeState>> = (0 until globalData.totalNodes).map { id ->
         val network = Network(id, nm)
         Collektive(id, network) {
-            val sensorData = currentSensing?.get(id)
+            val sensorData = currentSensing[id]
             require(sensorData != null) { "Sensor data should never be null here" }
             return@Collektive entrypoint(sensorData)
         }
     }
 
-    override fun step(sensing: List<SensorData>): List<NodeState> {
-        currentSensing = sensing
-        return nodes.map { it.cycle() }
+    override fun step(id: Int, sensorData: SensorData): NodeState {
+        currentSensing[id] = sensorData
+        return nodes.first { it.localId == id }.cycle()
     }
 
     override fun addConnection(node1: Int, node2: Int): Boolean = nm.addConnection(node1, node2)

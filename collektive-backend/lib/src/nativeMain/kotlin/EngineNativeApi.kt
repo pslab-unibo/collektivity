@@ -10,7 +10,9 @@ import kotlinx.cinterop.CPointer
 import kotlinx.cinterop.CPointerVar
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.IntVar
+import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.allocArray
+import kotlinx.cinterop.convert
 import kotlinx.cinterop.free
 import kotlinx.cinterop.get
 import kotlinx.cinterop.nativeHeap
@@ -18,6 +20,7 @@ import kotlinx.cinterop.plus
 import kotlinx.cinterop.pointed
 import kotlinx.cinterop.readBytes
 import kotlinx.cinterop.refTo
+import kotlinx.cinterop.usePinned
 import kotlinx.cinterop.value
 import platform.posix.memcpy
 import kotlin.experimental.ExperimentalNativeApi
@@ -39,42 +42,18 @@ fun initialize(dataPointer: CPointer<ByteVar>?, dataSize: Int)
 
 @OptIn(ExperimentalNativeApi::class, ExperimentalForeignApi::class)
 @CName("step")
-fun step(
-    pointers: CPointer<CPointerVar<ByteVar>>?,
-    sizes: CPointer<IntVar>?,
-    outputSizes: CPointer<IntVar>?
-): CPointer<CPointerVar<ByteVar>>? {
-    try {
+fun step(id: Int, rawSensing: CPointer<ByteVar>, dataSize: Int, outSize: CPointer<IntVar>): CPointer<ByteVar> {
     requireEngine()
-    require(pointers != null || sizes != null || outputSizes != null)
-    { "Invalid data passed to step function. Pointers or sizes are null" }
-    val sensingData = List(engine?.globalData?.totalNodes!!) { i ->
-        val dataPtr = pointers?.get(i)
-        val dataSize = sizes?.get(i)
-        require(dataSize != null) { "A value inside the sizes list was null (index: $i)" }
-        require(dataPtr != null) { "A value inside the data pointers list was null (index: $i)" }
-        SensorData.ADAPTER.decode(dataPtr.readBytes(dataSize))
+    require(dataSize >= 0) { "Invalid data size." }
+    val sensingData = SensorData.ADAPTER.decode(rawSensing.readBytes(dataSize))
+    val nodeState = engine?.step(id, sensingData)!!
+    val byteArray = NodeState.ADAPTER.encode(nodeState)
+    val pinnedBuffer = nativeHeap.allocArray<ByteVar>(byteArray.size)
+    byteArray.usePinned { pinned ->
+        memcpy(pinnedBuffer, pinned.addressOf(0), byteArray.size.convert())
     }
-    var nodeStates = listOf<NodeState>()
-       nodeStates = engine?.step(sensingData)!!
-    val results: List<ByteArray> = nodeStates.map { NodeState.ADAPTER.encode(it) }
-    return prepareReturnData(results, outputSizes)
-    } catch(e: Throwable) {
-       println("ERROR: ${e.message}")
-    }
-    return null
-}
-
-@OptIn(ExperimentalForeignApi::class)
-private fun prepareReturnData(results: List<ByteArray>, outputSizes: CPointer<IntVar>?): CPointer<CPointerVar<ByteVar>> {
-    val resultPointers = nativeHeap.allocArray<CPointerVar<ByteVar>>(results.size)
-    results.forEachIndexed { i, bytes ->
-        val nativeBytes = nativeHeap.allocArray<ByteVar>(bytes.size)
-        memcpy(nativeBytes, bytes.refTo(0), bytes.size.toULong())
-        resultPointers.plus(i)!!.pointed.value = nativeBytes
-        outputSizes?.plus(i)!!.pointed.value = bytes.size
-    }
-    return resultPointers
+    outSize.pointed.value = byteArray.size
+    return pinnedBuffer
 }
 
 @OptIn(ExperimentalNativeApi::class)
@@ -100,12 +79,9 @@ fun updateGlobalData(dataPointer: CPointer<ByteVar>?, dataSize: Int)
 }
 
 @OptIn(ExperimentalNativeApi::class, ExperimentalForeignApi::class)
-@CName("free_results")
-fun freeResults(pointers: CPointer<CPointerVar<ByteVar>>?, count: Int) {
-    if (pointers == null) return
-    for (i in 0 until count)
-    {
-        nativeHeap.free(pointers[i]!!)
+@CName("free_result")
+fun freeResult(pointer: CPointer<ByteVar>?) {
+    if (pointer != null) {
+        nativeHeap.free(pointer)
     }
-    nativeHeap.free(pointers)
 }
