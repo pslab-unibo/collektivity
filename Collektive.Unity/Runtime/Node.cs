@@ -41,8 +41,7 @@ namespace Collektive.Unity
         {
             Id = SimulationManager.Instance.AddNode(this);
             name = $"node {Id}";
-            _prng =
-                _prng == null ? new Random(SimulationManager.Instance.GlobalData.Seed + Id) : _prng;
+            _prng = new Random(SimulationManager.Instance.GlobalData.Seed + Id);
             OnStateReceived += Act;
         }
 

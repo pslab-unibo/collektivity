@@ -25,11 +25,12 @@ namespace Collektive.Unity
         [SerializeField, Tooltip("The master seed from which every random generator begins")]
         private int masterSeed = 42;
 
-        private List<Node> _nodes = new();
+        private Dictionary<int, Node> _nodes = new();
         private LinkManager _linkManager;
         private bool _isEngineInit = false;
+        private int _counter = 0;
 
-        public List<Node> Nodes => new(_nodes);
+        public List<Node> Nodes => new(_nodes.Values);
         public GlobalData GlobalData { get; private set; }
 
         private void Awake()
@@ -53,10 +54,10 @@ namespace Collektive.Unity
         {
             if (globalSimulationPaused)
                 return;
-            foreach (var node in _nodes)
+            foreach (var (id, node) in _nodes)
             {
                 var sensing = node.Sense();
-                var state = EngineNativeApi.Step(_nodes.IndexOf(node), sensing);
+                var state = EngineNativeApi.Step(id, sensing);
                 node.OnStateReceived?.Invoke(state);
             }
             Physics.Simulate(deltaTime);
@@ -80,10 +81,10 @@ namespace Collektive.Unity
         public int AddNode(Node node)
         {
             InitIfNotPresent();
-            var id = _nodes.Count;
+            var id = GetNewId();
             if (EngineNativeApi.AddNode(id))
             {
-                _nodes.Add(node);
+                _nodes.Add(id, node);
                 return id;
             }
             else
@@ -92,5 +93,7 @@ namespace Collektive.Unity
                 return 0;
             }
         }
+
+        private int GetNewId() => _counter++;
     }
 }
