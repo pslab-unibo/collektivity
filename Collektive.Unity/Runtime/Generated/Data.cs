@@ -25,14 +25,14 @@ namespace Collektive.Unity.Data {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgpkYXRhLnByb3RvGhl1c2VyLWRlZmluZWQtc2NoZW1hLnByb3RvGgxzaGFy",
-            "ZWQucHJvdG8iWgoKR2xvYmFsRGF0YRISCgp0b3RhbE5vZGVzGAEgASgFEhEK",
-            "CWRlbHRhVGltZRgCIAEoARIlCgpjdXN0b21EYXRhGAMgASgLMhEuQ3VzdG9t",
-            "R2xvYmFsRGF0YUI4Ch5pdC51bmliby5jb2xsZWt0aXZlLnVuaXR5LmRhdGGq",
-            "AhVDb2xsZWt0aXZlLlVuaXR5LkRhdGFiBnByb3RvMw=="));
+            "ZWQucHJvdG8iQQoKR2xvYmFsRGF0YRIMCgRzZWVkGAEgASgFEiUKCmN1c3Rv",
+            "bURhdGEYAiABKAsyES5DdXN0b21HbG9iYWxEYXRhQjgKHml0LnVuaWJvLmNv",
+            "bGxla3RpdmUudW5pdHkuZGF0YaoCFUNvbGxla3RpdmUuVW5pdHkuRGF0YWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Collektive.Unity.Schema.UserDefinedSchemaReflection.Descriptor, global::Collektive.Unity.Shared.SharedReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Collektive.Unity.Data.GlobalData), global::Collektive.Unity.Data.GlobalData.Parser, new[]{ "TotalNodes", "DeltaTime", "CustomData" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Collektive.Unity.Data.GlobalData), global::Collektive.Unity.Data.GlobalData.Parser, new[]{ "Seed", "CustomData" }, null, null, null, null)
           }));
     }
     #endregion
@@ -74,8 +74,7 @@ namespace Collektive.Unity.Data {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public GlobalData(GlobalData other) : this() {
-      totalNodes_ = other.totalNodes_;
-      deltaTime_ = other.deltaTime_;
+      seed_ = other.seed_;
       customData_ = other.customData_ != null ? other.customData_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -86,32 +85,20 @@ namespace Collektive.Unity.Data {
       return new GlobalData(this);
     }
 
-    /// <summary>Field number for the "totalNodes" field.</summary>
-    public const int TotalNodesFieldNumber = 1;
-    private int totalNodes_;
+    /// <summary>Field number for the "seed" field.</summary>
+    public const int SeedFieldNumber = 1;
+    private int seed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int TotalNodes {
-      get { return totalNodes_; }
+    public int Seed {
+      get { return seed_; }
       set {
-        totalNodes_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "deltaTime" field.</summary>
-    public const int DeltaTimeFieldNumber = 2;
-    private double deltaTime_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public double DeltaTime {
-      get { return deltaTime_; }
-      set {
-        deltaTime_ = value;
+        seed_ = value;
       }
     }
 
     /// <summary>Field number for the "customData" field.</summary>
-    public const int CustomDataFieldNumber = 3;
+    public const int CustomDataFieldNumber = 2;
     private global::Collektive.Unity.Schema.CustomGlobalData customData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -137,8 +124,7 @@ namespace Collektive.Unity.Data {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TotalNodes != other.TotalNodes) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(DeltaTime, other.DeltaTime)) return false;
+      if (Seed != other.Seed) return false;
       if (!object.Equals(CustomData, other.CustomData)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -147,8 +133,7 @@ namespace Collektive.Unity.Data {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (TotalNodes != 0) hash ^= TotalNodes.GetHashCode();
-      if (DeltaTime != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(DeltaTime);
+      if (Seed != 0) hash ^= Seed.GetHashCode();
       if (customData_ != null) hash ^= CustomData.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -168,16 +153,12 @@ namespace Collektive.Unity.Data {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TotalNodes != 0) {
+      if (Seed != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TotalNodes);
-      }
-      if (DeltaTime != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(DeltaTime);
+        output.WriteInt32(Seed);
       }
       if (customData_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteMessage(CustomData);
       }
       if (_unknownFields != null) {
@@ -190,16 +171,12 @@ namespace Collektive.Unity.Data {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TotalNodes != 0) {
+      if (Seed != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TotalNodes);
-      }
-      if (DeltaTime != 0D) {
-        output.WriteRawTag(17);
-        output.WriteDouble(DeltaTime);
+        output.WriteInt32(Seed);
       }
       if (customData_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteMessage(CustomData);
       }
       if (_unknownFields != null) {
@@ -212,11 +189,8 @@ namespace Collektive.Unity.Data {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (TotalNodes != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TotalNodes);
-      }
-      if (DeltaTime != 0D) {
-        size += 1 + 8;
+      if (Seed != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Seed);
       }
       if (customData_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(CustomData);
@@ -233,11 +207,8 @@ namespace Collektive.Unity.Data {
       if (other == null) {
         return;
       }
-      if (other.TotalNodes != 0) {
-        TotalNodes = other.TotalNodes;
-      }
-      if (other.DeltaTime != 0D) {
-        DeltaTime = other.DeltaTime;
+      if (other.Seed != 0) {
+        Seed = other.Seed;
       }
       if (other.customData_ != null) {
         if (customData_ == null) {
@@ -265,14 +236,10 @@ namespace Collektive.Unity.Data {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TotalNodes = input.ReadInt32();
+            Seed = input.ReadInt32();
             break;
           }
-          case 17: {
-            DeltaTime = input.ReadDouble();
-            break;
-          }
-          case 26: {
+          case 18: {
             if (customData_ == null) {
               CustomData = new global::Collektive.Unity.Schema.CustomGlobalData();
             }
@@ -299,14 +266,10 @@ namespace Collektive.Unity.Data {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TotalNodes = input.ReadInt32();
+            Seed = input.ReadInt32();
             break;
           }
-          case 17: {
-            DeltaTime = input.ReadDouble();
-            break;
-          }
-          case 26: {
+          case 18: {
             if (customData_ == null) {
               CustomData = new global::Collektive.Unity.Schema.CustomGlobalData();
             }
