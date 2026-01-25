@@ -14,9 +14,13 @@ namespace Collektive.Unity
         [SerializeField]
         private Color linkColor = Color.cyan;
 
-        private Dictionary<(Node, Node), LineRenderer> _connections = new();
+        private Dictionary<(int, int), LineRenderer> _connections = new();
 
-        public void AddConnection(Node node1, Node node2)
+        private List<Node> _nodes;
+
+        public void SetNodes(List<Node> nodes) => _nodes = nodes;
+
+        public void AddConnection(int node1, int node2)
         {
             var key = GetOrderedPair(node1, node2);
             if (_connections.ContainsKey(key))
@@ -36,7 +40,7 @@ namespace Collektive.Unity
             lineRenderer.enabled = showLinks;
         }
 
-        public void RemoveConnection(Node node1, Node node2)
+        public void RemoveConnection(int node1, int node2)
         {
             var key = GetOrderedPair(node1, node2);
             if (_connections.TryGetValue(key, out LineRenderer lineRenderer))
@@ -65,16 +69,21 @@ namespace Collektive.Unity
             }
         }
 
-        private void UpdateConnectionPosition(LineRenderer lineRenderer, Node node1, Node node2)
+        private void UpdateConnectionPosition(LineRenderer lineRenderer, int node1Id, int node2Id)
         {
-            if (lineRenderer == null)
+            if (_nodes == null || lineRenderer == null)
                 return;
-            lineRenderer.SetPosition(0, node1.transform.position);
-            lineRenderer.SetPosition(1, node2.transform.position);
+            var n1 = _nodes.Find(n => n.Id == node1Id);
+            var n2 = _nodes.Find(n => n.Id == node2Id);
+            if (n1 != null && n2 != null)
+            {
+                lineRenderer.SetPosition(0, n1.transform.position);
+                lineRenderer.SetPosition(1, n2.transform.position);
+            }
         }
 
-        private (Node, Node) GetOrderedPair(Node node1, Node node2) =>
-            node1.Id < node2.Id ? (node1, node2) : (node2, node1);
+        private (int, int) GetOrderedPair(int node1, int node2) =>
+            node1 < node2 ? (node1, node2) : (node2, node1);
 
         public void SetShowLinks(bool show)
         {

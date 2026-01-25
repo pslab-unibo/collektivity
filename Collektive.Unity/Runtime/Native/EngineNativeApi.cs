@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using Collektive.Unity.Data;
 using Collektive.Unity.Schema;
 using Google.Protobuf;
-using UnityEngine;
 
 namespace Collektive.Unity.Native
 {
@@ -36,16 +35,6 @@ namespace Collektive.Unity.Native
             CallingConvention = CallingConvention.Cdecl
         )]
         public static extern bool RemoveConnection(int node1, int node2);
-
-        [DllImport(LibName, EntryPoint = "add_node", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool AddNode(int id);
-
-        [DllImport(
-            LibName,
-            EntryPoint = "remove_node",
-            CallingConvention = CallingConvention.Cdecl
-        )]
-        public static extern bool RemoveNode(int id);
 
         [DllImport(
             LibName,
@@ -107,30 +96,6 @@ namespace Collektive.Unity.Native
             {
                 handle.Free();
             }
-        }
-
-        //----------------------- logger ---------------------
-        private delegate void LogCallbackDelegate([MarshalAs(UnmanagedType.LPStr)] string message);
-
-        [DllImport(
-            LibName,
-            EntryPoint = "set_log_callback",
-            CallingConvention = CallingConvention.Cdecl
-        )]
-        private static extern void SetLogCallback(LogCallbackDelegate callback);
-
-        private static LogCallbackDelegate logDelegate;
-
-        public static void InitializeLogging()
-        {
-            logDelegate = UnityLogCallback;
-            SetLogCallback(logDelegate);
-        }
-
-        [AOT.MonoPInvokeCallback(typeof(LogCallbackDelegate))]
-        private static void UnityLogCallback(string message)
-        {
-            Debug.Log($"[Kotlin] {message}");
         }
     }
 }

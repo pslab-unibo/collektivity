@@ -135,10 +135,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.61
@@ -199,10 +195,6 @@ PrefabInstance:
     - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_Name
       value: Node (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x
@@ -833,8 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: unibo.collektive.unity::Collektive.Unity.SimulationManager
   totalNodes: 0
   deltaTime: 0.05
-  globalSimulationPaused: 0
-  masterSeed: 42
+  simulationPaused: 0
 --- !u!114 &1093787604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,10 +856,6 @@ PrefabInstance:
     - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_Name
       value: Node (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x
@@ -931,10 +918,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01
@@ -995,10 +978,6 @@ PrefabInstance:
     - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_Name
       value: Node (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1061,10 +1040,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1121,10 +1096,6 @@ PrefabInstance:
     - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_Name
       value: Node
-      objectReference: {fileID: 0}
-    - target: {fileID: 3437552194256403457, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3834570084221060832, guid: 0b4c2aec6df6ff107972a3e7740e6315, type: 3}
       propertyPath: m_LocalPosition.x

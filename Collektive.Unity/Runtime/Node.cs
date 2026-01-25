@@ -16,7 +16,19 @@ namespace Collektive.Unity
 
         private Random _prng;
 
-        public int Id => id;
+        public int Id
+        {
+            get => id;
+            private set => id = value;
+        }
+
+        private void Start() => name = $"node + {Id}";
+
+        public void Init(int id)
+        {
+            Id = id;
+            _prng = new Random(SimulationManager.Instance.MasterSeed + id);
+        }
 
         public Action<NodeState> OnStateReceived;
 
@@ -33,18 +45,8 @@ namespace Collektive.Unity
             return mean + stdDev * (float)randStdNormal;
         }
 
-        private void OnEnable()
-        {
-            OnStateReceived += Act;
-            id = SimulationManager.Instance.AddNode(this);
-            name = $"node {Id}";
-            _prng = _prng == null ? new Random(SimulationManager.Instance.MasterSeed + Id) : _prng;
-        }
+        private void OnEnable() => OnStateReceived += Act;
 
-        private void OnDisable()
-        {
-            OnStateReceived -= Act;
-            SimulationManager.Instance.RemoveNode(this);
-        }
+        private void OnDisable() => OnStateReceived -= Act;
     }
 }

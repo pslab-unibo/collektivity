@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Collektive.Unity.Attributes;
 using Collektive.Unity.Data;
 using Collektive.Unity.Native;
@@ -26,17 +25,23 @@ namespace Collektive.Unity
         [SerializeField, Tooltip("The master seed from which every random generator begins")]
         private int masterSeed = 42;
 
+        private List<Node> _nodes = new();
         private LinkManager _linkManager;
-        private Dictionary<int, Node> _nodes = new();
 
         public GlobalData GlobalData { get; private set; }
         public int MasterSeed => masterSeed;
 
         private void Awake()
         {
+            var nodes = Object.FindObjectsByType<Node>(FindObjectsSortMode.None);
             _linkManager = GetComponent<LinkManager>();
-            GlobalData = new GlobalData { DeltaTime = deltaTime };
+            _nodes.AddRange(nodes);
+            _linkManager.SetNodes(_nodes);
+            totalNodes = _nodes.Count;
+            GlobalData = new GlobalData { TotalNodes = nodes.Length, DeltaTime = deltaTime };
             EngineNativeApi.Initialize(GlobalData);
+            for (var i = 0; i < _nodes.Count; i++)
+                _nodes[i].Init(i);
             Physics.simulationMode = SimulationMode.Script;
             Time.timeScale = 0f;
         }
@@ -45,51 +50,28 @@ namespace Collektive.Unity
         {
             if (globalSimulationPaused)
                 return;
-            foreach (var node in _nodes.Values)
+            foreach (var node in _nodes)
             {
                 var sensing = node.Sense();
-                var state = EngineNativeApi.Step(node.Id, sensing);
+                var state = EngineNativeApi.Step(_nodes.IndexOf(node), sensing);
                 node.OnStateReceived?.Invoke(state);
             }
             Physics.Simulate(deltaTime);
         }
 
-        public bool AddConnection(Node node1, Node node2)
+        public bool AddConnection(int node1, int node2)
         {
             _linkManager.AddConnection(node1, node2);
-            return EngineNativeApi.AddConnection(node1.Id, node2.Id);
+            return EngineNativeApi.AddConnection(node1, node2);
         }
 
-        public bool RemoveConnection(Node node1, Node node2)
+        public bool RemoveConnection(int node1, int node2)
         {
             _linkManager.RemoveConnection(node1, node2);
-            return EngineNativeApi.RemoveConnection(node1.Id, node2.Id);
-        }
-
-        public int AddNode(Node node)
-        {
-            var id = GetValidId();
-            Debug.Log($"Adding node {id}");
-            _nodes[id] = node;
-            EngineNativeApi.AddNode(id);
-            return id;
-        }
-
-        public bool RemoveNode(Node node)
-        {
-            _nodes.Remove(node.Id);
-            return EngineNativeApi.RemoveNode(node.Id);
+            return EngineNativeApi.RemoveConnection(node1, node2);
         }
 
         public void UpdateGlobalData(CustomGlobalData data) =>
             EngineNativeApi.UpdateGlobalData(data);
-
-        private int GetValidId()
-        {
-            var id = 0;
-            while (_nodes.Keys.Contains(id))
-                id++;
-            return id;
-        }
     }
 }
