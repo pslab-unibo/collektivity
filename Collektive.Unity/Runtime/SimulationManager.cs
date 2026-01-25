@@ -27,6 +27,7 @@ namespace Collektive.Unity
 
         private List<Node> _nodes = new();
         private LinkManager _linkManager;
+        private bool _isEngineInit = false;
 
         public List<Node> Nodes => new(_nodes);
         public GlobalData GlobalData { get; private set; }
@@ -34,10 +35,18 @@ namespace Collektive.Unity
         private void Awake()
         {
             _linkManager = GetComponent<LinkManager>();
-            GlobalData = new GlobalData { Seed = masterSeed };
-            EngineNativeApi.Initialize(GlobalData);
+            InitIfNotPresent();
             Physics.simulationMode = SimulationMode.Script;
             Time.timeScale = 0f;
+        }
+
+        private void InitIfNotPresent()
+        {
+            if (_isEngineInit)
+                return;
+            _isEngineInit = true;
+            GlobalData = new GlobalData { Seed = masterSeed };
+            EngineNativeApi.Initialize(GlobalData);
         }
 
         private void Update()
@@ -70,6 +79,7 @@ namespace Collektive.Unity
 
         public int AddNode(Node node)
         {
+            InitIfNotPresent();
             var id = _nodes.Count;
             if (EngineNativeApi.AddNode(id))
             {

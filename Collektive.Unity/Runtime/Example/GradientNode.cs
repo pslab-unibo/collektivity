@@ -16,7 +16,7 @@ namespace Collektive.Unity.Example
 
         private Renderer _renderer;
 
-        protected override void Initialize()
+        private void Start()
         {
             _renderer = GetComponent<Renderer>();
         }

@@ -22,19 +22,10 @@ namespace Collektive.Unity
             private set => id = value;
         }
 
-        private void Start()
-        {
-            Id = SimulationManager.Instance.AddNode(this);
-            name = $"node {Id}";
-            _prng = new Random(SimulationManager.Instance.GlobalData.Seed + Id);
-            Initialize();
-        }
-
         public Action<NodeState> OnStateReceived;
 
         public abstract SensorData Sense();
         protected abstract void Act(NodeState state);
-        protected abstract void Initialize();
 
         protected float GetNextRandom() => (float)_prng.NextDouble();
 
@@ -46,7 +37,14 @@ namespace Collektive.Unity
             return mean + stdDev * (float)randStdNormal;
         }
 
-        private void OnEnable() => OnStateReceived += Act;
+        private void OnEnable()
+        {
+            Id = SimulationManager.Instance.AddNode(this);
+            name = $"node {Id}";
+            _prng =
+                _prng == null ? new Random(SimulationManager.Instance.GlobalData.Seed + Id) : _prng;
+            OnStateReceived += Act;
+        }
 
         private void OnDisable() => OnStateReceived -= Act;
     }
