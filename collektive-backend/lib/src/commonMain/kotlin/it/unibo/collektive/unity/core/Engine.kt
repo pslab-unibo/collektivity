@@ -12,8 +12,8 @@ import it.unibo.collektive.unity.schema.SensorData
 
 interface Engine {
     fun step(id: Int, sensorData: SensorData): NodeState
-    fun addConnection(node1: Int, node2: Int): Boolean
-    fun removeConnection(node1: Int, node2: Int): Boolean
+    fun subscribe(node1: Int, node2: Int): Boolean
+    fun unsubscribe(node1: Int, node2: Int): Boolean
     fun updateGlobalData(data: CustomGlobalData)
     fun addNode(id: Int): Boolean
     fun removeNode(id: Int): Boolean
@@ -29,9 +29,9 @@ class EngineImpl(private val nm: NetworkManager, private var globalData: GlobalD
         return nodes.first { it.localId == id }.cycle()
     }
 
-    override fun addConnection(node1: Int, node2: Int): Boolean = nm.addConnection(node1, node2)
+    override fun subscribe(node1: Int, node2: Int): Boolean = nm.subscribe(node1, node2)
 
-    override fun removeConnection(node1: Int, node2: Int): Boolean = nm.removeConnection(node1, node2)
+    override fun unsubscribe(node1: Int, node2: Int): Boolean = nm.unsubscribe(node1, node2)
 
     override fun updateGlobalData(data: CustomGlobalData) { globalData = globalData.copy(customData = data) }
 

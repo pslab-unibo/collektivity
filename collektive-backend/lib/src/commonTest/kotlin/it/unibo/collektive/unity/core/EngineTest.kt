@@ -52,12 +52,12 @@ class EngineTest {
             return NoNeighborsData()
         }
 
-        override fun removeConnection(node1: Int, node2: Int): Boolean {
+        override fun unsubscribe(subscriber: Int, publisher: Int): Boolean {
             isConnectionRemove = true
             return true
         }
 
-        override fun addConnection(node1: Int, node2: Int): Boolean {
+        override fun subscribe(subscriber: Int, publisher: Int): Boolean {
             isConnectionAdd = true
             return true
         }
@@ -98,9 +98,9 @@ class EngineTest {
 
     @Test
     fun testConnectionDelegation() {
-        assertTrue(engine.addConnection(1, 2))
+        assertTrue(engine.subscribe(1, 2))
         assertTrue(nm.isConnectionAdd)
-        assertTrue(engine.removeConnection(1, 2))
+        assertTrue(engine.unsubscribe(1, 2))
         assertTrue(nm.isConnectionRemove)
     }
 }

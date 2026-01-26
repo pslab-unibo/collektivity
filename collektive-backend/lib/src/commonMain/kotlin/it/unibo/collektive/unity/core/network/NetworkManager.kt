@@ -36,16 +36,16 @@ interface NetworkManager {
     fun receiveMessageFor(id: Int): NeighborsData<Int>
 
     /**
-     * Remove the connection between those 2 nodes.
-     * @return true if the connection was successfully removed, false otherwise.
+     * Subscribe the subscriber to the publisher.
+     * @return true if the subscription was successfully done, false otherwise.
      */
-    fun removeConnection(node1: Int, node2: Int): Boolean
+    fun subscribe(subscriber: Int, publisher: Int): Boolean
 
     /**
-     * Add the connection between those 2 nodes.
-     * @return true if the connection was successfully added, false otherwise.
+     * Unsubscribe the subscriber to the publisher.
+     * @return true if the unsubscription was successfully done, false otherwise.
      */
-    fun addConnection(node1: Int, node2: Int): Boolean
+    fun unsubscribe(subscriber: Int, publisher: Int): Boolean
 }
 
 class NetworkManagerImpl : NetworkManager {
@@ -74,7 +74,7 @@ class NetworkManagerImpl : NetworkManager {
         val neighbors = adjacencyMap[id] ?: return@withLock NoNeighborsData()
         return@withLock NeighborsDataImpl(
             neighbors,
-            neighbors.mapNotNull {nbrId ->
+            neighbors.mapNotNull { nbrId ->
                 outboxes[nbrId]?.let { envelope ->
                     nbrId to envelope.prepareMessageFor(id)
                 }
@@ -82,16 +82,12 @@ class NetworkManagerImpl : NetworkManager {
         )
     }
 
-    override fun removeConnection(node1: Int, node2: Int): Boolean = lock.withLock {
-        val r1 = adjacencyMap[node1]?.remove(node2) ?: false
-        val r2 = adjacencyMap[node2]?.remove(node1) ?: false
-        return@withLock r1 || r2
+    override fun subscribe(subscriber: Int, publisher: Int): Boolean = lock.withLock {
+        return@withLock adjacencyMap.getOrPut(subscriber) { mutableSetOf() }.add(publisher)
     }
 
-    override fun addConnection(node1: Int, node2: Int): Boolean = lock.withLock {
-        val a1 = adjacencyMap.getOrPut(node1) { mutableSetOf() }.add(node2)
-        val a2 = adjacencyMap.getOrPut(node2) { mutableSetOf() }.add(node1)
-        return@withLock a1 || a2
+    override fun unsubscribe(subscriber: Int, publisher: Int): Boolean = lock.withLock {
+        return@withLock adjacencyMap[subscriber]?.remove(publisher) ?: false
     }
 }
 

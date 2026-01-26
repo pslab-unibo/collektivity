@@ -48,15 +48,15 @@ fun step(id: Int, rawSensing: CPointer<ByteVar>, dataSize: Int, outSize: CPointe
 }
 
 @OptIn(ExperimentalNativeApi::class)
-@CName("add_connection")
-fun addConnection(node1: Int, node2: Int): Boolean {
-    return engine.addConnection(node1, node2)
+@CName("subscribe")
+fun subscribe(node1: Int, node2: Int): Boolean {
+    return engine.subscribe(node1, node2)
 }
 
 @OptIn(ExperimentalNativeApi::class)
-@CName("remove_connection")
-fun removeConnection(node1: Int, node2: Int): Boolean {
-    return engine.removeConnection(node1, node2)
+@CName("unsubscribe")
+fun unsubscribe(node1: Int, node2: Int): Boolean {
+    return engine.unsubscribe(node1, node2)
 }
 
 @OptIn(ExperimentalNativeApi::class)
