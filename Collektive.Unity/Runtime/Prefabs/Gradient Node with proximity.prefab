@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 278951429848541688}
   - component: {fileID: 7571912262180821158}
   m_Layer: 0
-  m_Name: Node
+  m_Name: Gradient Node with proximity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

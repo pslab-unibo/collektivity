@@ -15,6 +15,7 @@ namespace Collektive.Unity
         private int id;
 
         private Random _prng;
+        private bool _isQuitting = false;
 
         public int Id
         {
@@ -43,12 +44,20 @@ namespace Collektive.Unity
             name = $"node {Id}";
             _prng = new Random(SimulationManager.Instance.GlobalData.Seed + Id);
             OnStateReceived += Act;
+            Application.wantsToQuit += OnQuit;
         }
 
         private void OnDisable()
         {
-            SimulationManager.Instance.RemoveNode(this);
+            if (!_isQuitting)
+                SimulationManager.Instance.RemoveNode(this);
             OnStateReceived -= Act;
+        }
+
+        private bool OnQuit()
+        {
+            _isQuitting = true;
+            return true;
         }
     }
 }

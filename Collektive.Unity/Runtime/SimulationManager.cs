@@ -31,7 +31,6 @@ namespace Collektive.Unity
         private bool _isEngineInit = false;
         private int _counter = 0;
 
-        public List<Node> Nodes => new(_nodes.Values);
         public GlobalData GlobalData { get; private set; }
 
         private void Awake()
