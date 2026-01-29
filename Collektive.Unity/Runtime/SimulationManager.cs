@@ -43,7 +43,7 @@ namespace Collektive.Unity
         private void Awake()
         {
             _linkManager = GetComponent<LinkManager>();
-            _engine = new EngineNativeApi();
+            _engine ??= new EngineNativeApi();
             InitIfNotPresent();
             Physics.simulationMode = SimulationMode.Script;
             Time.timeScale = 0f;
