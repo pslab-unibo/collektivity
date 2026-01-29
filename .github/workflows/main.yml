@@ -43,7 +43,7 @@ jobs:
 
       - name: Build and Test Backend
         working-directory: ./collektive-backend
-        run: ./gradlew build test
+        run: ./gradlew build allTests
 
   build:
     name: Build for ${{ matrix.targetPlatform }} on ${{ matrix.os }}
