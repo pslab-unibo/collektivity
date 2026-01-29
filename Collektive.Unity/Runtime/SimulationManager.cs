@@ -4,6 +4,7 @@ using Collektive.Unity.Attributes;
 using Collektive.Unity.Data;
 using Collektive.Unity.Native;
 using Collektive.Unity.Schema;
+using Collektive.Unity.Utils;
 using UnityEngine;
 
 namespace Collektive.Unity
@@ -30,12 +31,19 @@ namespace Collektive.Unity
         private LinkManager _linkManager;
         private bool _isEngineInit = false;
         private int _counter = 0;
+        private IEngine _engine;
 
         public GlobalData GlobalData { get; private set; }
+
+        public void Initialize(IEngine engine)
+        {
+            _engine = engine;
+        }
 
         private void Awake()
         {
             _linkManager = GetComponent<LinkManager>();
+            _engine = new EngineNativeApi();
             InitIfNotPresent();
             Physics.simulationMode = SimulationMode.Script;
             Time.timeScale = 0f;
@@ -47,7 +55,7 @@ namespace Collektive.Unity
                 return;
             _isEngineInit = true;
             GlobalData = new GlobalData { Seed = masterSeed };
-            EngineNativeApi.Initialize(GlobalData);
+            _engine.Initialize(GlobalData);
         }
 
         private void Update()
@@ -57,7 +65,7 @@ namespace Collektive.Unity
             foreach (var (id, node) in _nodes)
             {
                 var sensing = node.Sense();
-                var state = EngineNativeApi.Step(id, sensing);
+                var state = _engine.Step(id, sensing);
                 node.OnStateReceived?.Invoke(state);
             }
             Physics.Simulate(deltaTime);
@@ -80,23 +88,22 @@ namespace Collektive.Unity
         public bool Subscribe(Node node1, Node node2)
         {
             _linkManager.AddDirectedConnection(node1, node2);
-            return EngineNativeApi.Subscribe(node1.Id, node2.Id);
+            return _engine.Subscribe(node1.Id, node2.Id);
         }
 
         public bool Unsubscribe(Node node1, Node node2)
         {
             _linkManager.RemoveDirectedConnection(node1, node2);
-            return EngineNativeApi.Unsubscribe(node1.Id, node2.Id);
+            return _engine.Unsubscribe(node1.Id, node2.Id);
         }
 
-        public void UpdateGlobalData(CustomGlobalData data) =>
-            EngineNativeApi.UpdateGlobalData(data);
+        public void UpdateGlobalData(CustomGlobalData data) => _engine.UpdateGlobalData(data);
 
         public int AddNode(Node node)
         {
             InitIfNotPresent();
             var id = GetNewId();
-            if (EngineNativeApi.AddNode(id))
+            if (_engine.AddNode(id))
             {
                 _nodes.Add(id, node);
                 return id;
@@ -111,7 +118,7 @@ namespace Collektive.Unity
         public bool RemoveNode(Node node)
         {
             InitIfNotPresent();
-            if (_nodes.Values.Contains(node) && EngineNativeApi.RemoveNode(node.Id))
+            if (_nodes.Values.Contains(node) && _engine.RemoveNode(node.Id))
             {
                 _linkManager.RemoveAllConnectionsForNode(node);
                 return _nodes.Remove(node.Id);

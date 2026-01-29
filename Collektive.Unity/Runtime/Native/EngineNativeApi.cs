@@ -7,7 +7,7 @@ using Google.Protobuf;
 
 namespace Collektive.Unity.Native
 {
-    public static class EngineNativeApi
+    public class EngineNativeApi : IEngine
     {
         private const string LibName = "collektive_backend";
 
@@ -23,24 +23,24 @@ namespace Collektive.Unity.Native
         );
 
         [DllImport(LibName, EntryPoint = "subscribe", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool Subscribe(int node1, int node2);
+        private static extern bool InternalSubscribe(int node1, int node2);
 
         [DllImport(
             LibName,
             EntryPoint = "unsubscribe",
             CallingConvention = CallingConvention.Cdecl
         )]
-        public static extern bool Unsubscribe(int node1, int node2);
+        private static extern bool InternalUnsubscribe(int node1, int node2);
 
         [DllImport(LibName, EntryPoint = "add_node", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool AddNode(int id);
+        private static extern bool InternalAddNode(int id);
 
         [DllImport(
             LibName,
             EntryPoint = "remove_node",
             CallingConvention = CallingConvention.Cdecl
         )]
-        public static extern bool RemoveNode(int id);
+        private static extern bool InternalRemoveNode(int id);
 
         [DllImport(
             LibName,
@@ -56,7 +56,15 @@ namespace Collektive.Unity.Native
         )]
         private static extern void FreeResult(IntPtr pointer);
 
-        public static void Initialize(GlobalData globalData)
+        public bool Subscribe(int node1, int node2) => InternalSubscribe(node1, node2);
+
+        public bool Unsubscribe(int node1, int node2) => InternalUnsubscribe(node1, node2);
+
+        public bool AddNode(int id) => InternalAddNode(id);
+
+        public bool RemoveNode(int id) => InternalRemoveNode(id);
+
+        public void Initialize(GlobalData globalData)
         {
             var rawData = globalData.ToByteArray();
             var handle = GCHandle.Alloc(rawData, GCHandleType.Pinned);
@@ -71,7 +79,7 @@ namespace Collektive.Unity.Native
             }
         }
 
-        public static NodeState Step(int id, SensorData sensingData)
+        public NodeState Step(int id, SensorData sensingData)
         {
             var encodedSensing = sensingData.ToByteArray();
             var resultPtr = Step(id, encodedSensing, encodedSensing.Length, out int outputSize);
@@ -89,7 +97,7 @@ namespace Collektive.Unity.Native
             }
         }
 
-        public static void UpdateGlobalData(CustomGlobalData data)
+        public void UpdateGlobalData(CustomGlobalData data)
         {
             var rawData = data.ToByteArray();
             var handle = GCHandle.Alloc(rawData, GCHandleType.Pinned);
