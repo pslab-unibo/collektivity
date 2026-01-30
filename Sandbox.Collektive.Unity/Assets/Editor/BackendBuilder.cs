@@ -123,7 +123,7 @@ namespace Editor
             var importer = AssetImporter.GetAtPath(UnitySoPath) as PluginImporter;
             if (importer == null)
             {
-                Debug.LogError(
+                Debug.LogWarning(
                     $"BackendBuilder: Could not get PluginImporter for asset at '{UnitySoPath}'"
                 );
                 return;
