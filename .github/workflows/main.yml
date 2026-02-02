@@ -93,44 +93,43 @@ jobs:
           allowDirtyBuild: true
 
   test:
-    name: Tests
-    needs: build
+    name: Test
     runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           lfs: true
-      - name: Cache Library
-        uses: actions/cache@v5
-        with:
-          path: ./Sandbox.Collektive.Unity/Library
-          key: Library-test-${{ hashFiles('**/ProjectSettings/**') }}
-      - name: Run Unity Tests
-        uses: game-ci/unity-test-runner@v4
+      - uses: game-ci/unity-test-runner@v4
         id: tests
         with:
-          projectPath: ./Sandbox.Collektive.Unity
+          packageMode: true
+          projectPath: Collektive.Unity
+          unityVersion: '6000.2.15f1'
+          testMode: All
+          artifactsPath: artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          customParameters: -debugCodeOptimization -enableCodeCoverage -coverageResultsPath ./coverage-results
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v6
+          checkName: Test Results
+          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Test-Results
-          path: artifacts
-      - name: Upload Coverage Results
-        uses: actions/upload-artifact@v6
+          name: Test results
+          path: ${{ steps.tests.outputs.artifactsPath }}
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: Coverage-Results
-          path: ./Sandbox.Collektive.Unity/coverage-results
+          name: Coverage results
+          path: ${{ steps.tests.outputs.coveragePath }}
 
   sonar-analysis:
     name: SonarQube Analysis
     needs: test
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repo
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Setup .NET
