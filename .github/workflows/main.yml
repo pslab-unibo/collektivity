@@ -95,8 +95,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-22.04
-    strategy:
-      fail-fast: false
+    needs: build
     steps:
       - uses: actions/checkout@v4
         with:
