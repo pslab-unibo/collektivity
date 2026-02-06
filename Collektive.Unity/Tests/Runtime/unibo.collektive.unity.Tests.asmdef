@@ -4,7 +4,9 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "unibo.collektive.unity"
+        "unibo.collektive.unity",
+        "Google.Protobuf",
+        "Unity.Protobuf.CodeGen"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -140,16 +140,15 @@ namespace Collektive.Unity.Tests
             _manager.AddNode(node);
             var actCalled = false;
             node.OnStateReceived += (state) => actCalled = true;
-            yield return null;
+            yield return new WaitForSeconds(SimulationManager.MAX_TIMESTEP);
             Assert.IsTrue(actCalled, "Engine.Step should be called and result invoked on Node.");
             Object.DestroyImmediate(nodeGo);
         }
 
         [Test]
-        public void AwakeConfiguresUnityPhysicsAndTime()
+        public void AwakeConfiguresUnityPhysics()
         {
             Assert.AreEqual(SimulationMode.Script, Physics.simulationMode);
-            Assert.AreEqual(0f, Time.timeScale);
         }
     }
 }

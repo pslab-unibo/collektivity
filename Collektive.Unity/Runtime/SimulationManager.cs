@@ -39,7 +39,7 @@ namespace Collektive.Unity
         private bool _isEngineInit = false;
         private int _counter = 0;
         private IEngine _engine;
-        private const float MAX_TIMESTEP = 0.3f;
+        public const float MAX_TIMESTEP = 0.3f;
 
         public GlobalData GlobalData { get; private set; }
 
