@@ -103,14 +103,14 @@ jobs:
       - uses: game-ci/unity-test-runner@v4
         id: tests
         with:
-          packageMode: false # try set package mode to false and pass unity project path instead of package path see if it works
+          packageMode: false
           projectPath: Sandbox.Collektive.Unity
           unityVersion: '6000.2.15f1'
           testMode: All
           artifactsPath: artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: Test Results
-          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
+          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+it.unibo.collektive.*'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
