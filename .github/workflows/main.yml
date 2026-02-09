@@ -104,7 +104,7 @@ jobs:
         id: tests
         with:
           packageMode: true
-          projectPath: Collektive.Unity
+          projectPath: Sandbox.Collektive.Unity
           unityVersion: '6000.2.15f1'
           testMode: All
           artifactsPath: artifacts
