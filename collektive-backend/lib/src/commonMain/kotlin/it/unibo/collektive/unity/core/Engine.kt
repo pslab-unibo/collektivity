@@ -4,9 +4,6 @@ import it.unibo.collektive.Collektive
 import it.unibo.collektive.aggregate.api.Aggregate
 import it.unibo.collektive.unity.core.network.Network
 import it.unibo.collektive.unity.core.network.NetworkManager
-import it.unibo.collektive.unity.data.GlobalData
-import it.unibo.collektive.unity.examples.entrypoint
-import it.unibo.collektive.unity.schema.CustomGlobalData
 import it.unibo.collektive.unity.schema.NodeState
 import it.unibo.collektive.unity.schema.SensorData
 
@@ -14,12 +11,11 @@ interface Engine {
     fun step(id: Int, sensorData: SensorData): NodeState
     fun subscribe(node1: Int, node2: Int): Boolean
     fun unsubscribe(node1: Int, node2: Int): Boolean
-    fun updateGlobalData(data: CustomGlobalData)
     fun addNode(id: Int): Boolean
     fun removeNode(id: Int): Boolean
 }
 
-class EngineImpl(private val nm: NetworkManager, private var globalData: GlobalData, private val program: Aggregate<Int>.(SensorData) -> NodeState) : Engine {
+class EngineImpl(private val nm: NetworkManager, private val program: Aggregate<Int>.(SensorData) -> NodeState) : Engine {
 
     private var currentSensing: MutableMap<Int, SensorData> = mutableMapOf()
     private val nodes: MutableList<Collektive<Int, NodeState>> = mutableListOf()
@@ -32,8 +28,6 @@ class EngineImpl(private val nm: NetworkManager, private var globalData: GlobalD
     override fun subscribe(node1: Int, node2: Int): Boolean = nm.subscribe(node1, node2)
 
     override fun unsubscribe(node1: Int, node2: Int): Boolean = nm.unsubscribe(node1, node2)
-
-    override fun updateGlobalData(data: CustomGlobalData) { globalData = globalData.copy(customData = data) }
 
     override fun addNode(id: Int): Boolean {
         if (nodes.map { it.localId }.contains(id)) return false

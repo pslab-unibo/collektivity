@@ -1,8 +1,6 @@
 package it.unibo.collektive.unity.core
 
 import it.unibo.collektive.unity.core.network.NetworkManagerImpl
-import it.unibo.collektive.unity.data.GlobalData
-import it.unibo.collektive.unity.schema.CustomGlobalData
 import it.unibo.collektive.unity.schema.NodeState
 import it.unibo.collektive.unity.schema.SensorData
 import it.unibo.collektive.unity.examples.entrypoint
@@ -26,10 +24,7 @@ lateinit var engine: Engine
 fun initialize(dataPointer: CPointer<ByteVar>?, dataSize: Int)
 {
     require(dataPointer != null) { "Invalid null pointer. Global data pointer should point to valid heap structure" }
-    engine = EngineImpl(
-        NetworkManagerImpl(),
-        GlobalData.ADAPTER.decode(dataPointer.readBytes(dataSize))
-    ) { entrypoint(it) }
+    engine = EngineImpl(NetworkManagerImpl()) { entrypoint(it) }
 }
 
 @OptIn(ExperimentalNativeApi::class, ExperimentalForeignApi::class)
@@ -69,14 +64,6 @@ fun addNode(id: Int): Boolean {
 @CName("remove_node")
 fun removeNode(id: Int): Boolean {
     return engine.removeNode(id)
-}
-
-@OptIn(ExperimentalNativeApi::class, ExperimentalForeignApi::class)
-@CName("update_global_data")
-fun updateGlobalData(dataPointer: CPointer<ByteVar>?, dataSize: Int)
-{
-    require(dataPointer != null) { "Invalid null pointer. Global data pointer should point to valid heap structure" }
-    engine.updateGlobalData(CustomGlobalData.ADAPTER.decode(dataPointer.readBytes(dataSize)))
 }
 
 @OptIn(ExperimentalNativeApi::class, ExperimentalForeignApi::class)

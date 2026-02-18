@@ -5,8 +5,6 @@ import it.unibo.collektive.networking.NeighborsData
 import it.unibo.collektive.networking.NoNeighborsData
 import it.unibo.collektive.networking.OutboundEnvelope
 import it.unibo.collektive.unity.core.network.NetworkManager
-import it.unibo.collektive.unity.data.GlobalData
-import it.unibo.collektive.unity.schema.CustomGlobalData
 import it.unibo.collektive.unity.schema.NodeState
 import it.unibo.collektive.unity.schema.SensorData
 import kotlin.test.BeforeTest
@@ -18,7 +16,6 @@ class EngineTest {
 
     private lateinit var nm: MockNetworkManager
     private lateinit var engine: EngineImpl
-    private val initialGlobalData = GlobalData(42, CustomGlobalData())
 
     private var isProgramExecuted = false
 
@@ -67,7 +64,7 @@ class EngineTest {
     @BeforeTest
     fun setup() {
         nm = MockNetworkManager()
-        engine = EngineImpl(nm, initialGlobalData, program)
+        engine = EngineImpl(nm, program)
         isProgramExecuted = false
     }
 
