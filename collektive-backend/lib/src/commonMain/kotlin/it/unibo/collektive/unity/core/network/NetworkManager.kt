@@ -7,8 +7,6 @@ import it.unibo.collektive.networking.NoNeighborsData
 import it.unibo.collektive.networking.OutboundEnvelope
 import it.unibo.collektive.path.Path
 import it.unibo.collektive.unity.core.Lock
-import kotlin.collections.component1
-import kotlin.collections.component2
 
 /**
  * Network manager that handles messaging.

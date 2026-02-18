@@ -16,14 +16,12 @@ wire {
 }
 
 kotlin {
-    linuxX64("native") {
-        binaries {
-            sharedLib {
-                baseName = "collektive-backend"
-            }
-        }
+    linuxX64("linux") {
+        binaries { sharedLib { baseName = "collektive-backend" } }
     }
-
+    mingwX64("windows") {
+        binaries { sharedLib { baseName = "collektive-backend" } }
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -32,12 +30,25 @@ kotlin {
                 implementation("com.squareup.wire:wire-runtime:5.5.0")
             }
         }
+        val nativeMain by creating {
+            dependsOn(commonMain)
+        }
+        val linuxMain by getting { dependsOn(nativeMain) }
+        val windowsMain by getting { dependsOn(nativeMain) }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val nativeMain by getting
-        val nativeTest by getting
+        val nativeTest by creating {
+            dependsOn(commonTest)
+        }
+        val linuxTest by getting {
+            dependsOn(nativeTest)
+        }
+        val windowsTest by getting {
+            dependsOn(nativeTest)
+        }
     }
 }
