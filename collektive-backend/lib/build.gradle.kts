@@ -17,10 +17,10 @@ wire {
 
 kotlin {
     linuxX64("linux") {
-        binaries { sharedLib { baseName = "collektive-backend" } }
+        binaries { sharedLib { baseName = "collektive_backend" } }
     }
     mingwX64("windows") {
-        binaries { sharedLib { baseName = "collektive-backend" } }
+        binaries { sharedLib { baseName = "collektive_backend" } }
     }
     sourceSets {
         val commonMain by getting {
