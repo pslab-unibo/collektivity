@@ -42,7 +42,7 @@ namespace Collektive.Unity
         {
             Id = SimulationManager.Instance.AddNode(this);
             name = $"node {Id}";
-            _prng = new Random(SimulationManager.Instance.GlobalData.Seed + Id);
+            _prng = new Random(SimulationManager.Instance.Seed + Id);
             OnStateReceived += Act;
             Application.wantsToQuit += OnQuit;
         }

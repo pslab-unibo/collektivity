@@ -41,7 +41,7 @@ namespace Collektive.Unity
         private IEngine _engine;
         public const float MAX_TIMESTEP = 0.3f;
 
-        public GlobalData GlobalData { get; private set; }
+        public int Seed => masterSeed;
 
         public void Initialize(IEngine engine)
         {
@@ -61,8 +61,7 @@ namespace Collektive.Unity
             if (_isEngineInit)
                 return;
             _isEngineInit = true;
-            GlobalData = new GlobalData { Seed = masterSeed };
-            _engine.Initialize(GlobalData);
+            _engine.Initialize();
         }
 
         private void Update()
@@ -113,8 +112,6 @@ namespace Collektive.Unity
             _linkManager.RemoveDirectedConnection(node1, node2);
             return _engine.Unsubscribe(node1.Id, node2.Id);
         }
-
-        public void UpdateGlobalData(CustomGlobalData data) => _engine.UpdateGlobalData(data);
 
         public int AddNode(Node node)
         {

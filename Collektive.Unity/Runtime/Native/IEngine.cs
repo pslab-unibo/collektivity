@@ -13,10 +13,8 @@ namespace Collektive.Unity.Native
 
         bool RemoveNode(int id);
 
-        void Initialize(GlobalData globalData);
+        void Initialize();
 
         NodeState Step(int id, SensorData sensingData);
-
-        void UpdateGlobalData(CustomGlobalData data);
     }
 }

@@ -12,7 +12,7 @@ namespace Collektive.Unity.Native
         private const string LibName = "collektive_backend";
 
         [DllImport(LibName, EntryPoint = "initialize", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void Initialize(IntPtr dataPointer, int dataSize);
+        private static extern void InternalInitialize();
 
         [DllImport(LibName, EntryPoint = "step", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr Step(
@@ -44,13 +44,6 @@ namespace Collektive.Unity.Native
 
         [DllImport(
             LibName,
-            EntryPoint = "update_global_data",
-            CallingConvention = CallingConvention.Cdecl
-        )]
-        private static extern void UpdateGlobalData(IntPtr dataPointer, int dataSize);
-
-        [DllImport(
-            LibName,
             EntryPoint = "free_result",
             CallingConvention = CallingConvention.Cdecl
         )]
@@ -64,20 +57,7 @@ namespace Collektive.Unity.Native
 
         public bool RemoveNode(int id) => InternalRemoveNode(id);
 
-        public void Initialize(GlobalData globalData)
-        {
-            var rawData = globalData.ToByteArray();
-            var handle = GCHandle.Alloc(rawData, GCHandleType.Pinned);
-            try
-            {
-                var pointer = handle.AddrOfPinnedObject();
-                Initialize(pointer, rawData.Length);
-            }
-            finally
-            {
-                handle.Free();
-            }
-        }
+        public void Initialize() => InternalInitialize();
 
         public NodeState Step(int id, SensorData sensingData)
         {
@@ -94,21 +74,6 @@ namespace Collektive.Unity.Native
             finally
             {
                 FreeResult(resultPtr);
-            }
-        }
-
-        public void UpdateGlobalData(CustomGlobalData data)
-        {
-            var rawData = data.ToByteArray();
-            var handle = GCHandle.Alloc(rawData, GCHandleType.Pinned);
-            try
-            {
-                var pointer = handle.AddrOfPinnedObject();
-                UpdateGlobalData(pointer, rawData.Length);
-            }
-            finally
-            {
-                handle.Free();
             }
         }
     }

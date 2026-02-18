@@ -17,9 +17,8 @@ namespace Collektive.Unity.Tests
             public int NodesRemoved;
             public int Subscriptions;
             public int Unsubscriptions;
-            public CustomGlobalData LastGlobalData;
 
-            public void Initialize(GlobalData data) => InitializeCalled = true;
+            public void Initialize() => InitializeCalled = true;
 
             public bool AddNode(int id)
             {
@@ -46,8 +45,6 @@ namespace Collektive.Unity.Tests
                 Unsubscriptions++;
                 return true;
             }
-
-            public void UpdateGlobalData(CustomGlobalData data) => LastGlobalData = data;
         }
 
         private GameObject _holder;
@@ -122,14 +119,6 @@ namespace Collektive.Unity.Tests
             var n2 = new GameObject().AddComponent<NodeTests.TestNode>();
             _manager.RemoveConnection(n1, n2);
             Assert.AreEqual(2, _mockEngine.Unsubscriptions);
-        }
-
-        [Test]
-        public void UpdateGlobalDataPassesDataToEngine()
-        {
-            var data = new CustomGlobalData();
-            _manager.UpdateGlobalData(data);
-            Assert.AreEqual(data, _mockEngine.LastGlobalData);
         }
 
         [UnityTest]
