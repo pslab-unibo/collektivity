@@ -30,6 +30,9 @@ namespace Collektive.Unity.Example
         [SerializeField, ReadOnly]
         private Vector3 targetPosition;
 
+        [SerializeField, ReadOnly]
+        private Vector3 appliedForce;
+
         private Rigidbody _rb;
         private ObstacleSensor _obstacleSensor;
 
@@ -87,10 +90,14 @@ namespace Collektive.Unity.Example
             var direction = targetPosition - transform.position;
             this.targetPosition = targetPosition;
             if (direction == Vector3.zero)
+            {
+                appliedForce = Vector3.zero;
                 return;
+            }
             var desiredVelocity = direction.normalized * maxSpeed;
             var steering = desiredVelocity - _rb.linearVelocity;
-            _rb.AddForce(Vector3.ClampMagnitude(steering, steeringForce), ForceMode.Force);
+            appliedForce = Vector3.ClampMagnitude(steering, steeringForce);
+            _rb.AddForce(appliedForce, ForceMode.Force);
         }
     }
 }
