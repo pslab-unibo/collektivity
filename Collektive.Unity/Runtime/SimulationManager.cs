@@ -123,6 +123,7 @@ namespace Collektive.Unity
             if (_engine.AddNode(id))
             {
                 _nodes.Add(id, node);
+                totalNodes++;
                 return id;
             }
             else
@@ -138,7 +139,10 @@ namespace Collektive.Unity
             if (_nodes.Values.Contains(node) && _engine.RemoveNode(node.Id))
             {
                 _linkManager.RemoveAllConnectionsForNode(node);
-                return _nodes.Remove(node.Id);
+                var result = _nodes.Remove(node.Id);
+                if (result)
+                    totalNodes--;
+                return result;
             }
             else
             {
