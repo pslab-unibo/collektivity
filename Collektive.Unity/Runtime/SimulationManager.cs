@@ -49,10 +49,7 @@ namespace Collektive.Unity
 
         private void Awake()
         {
-            _linkManager = GetComponent<LinkManager>();
-            _engine ??= new EngineNativeApi();
             InitIfNotPresent();
-            Physics.simulationMode = SimulationMode.Script;
         }
 
         private void InitIfNotPresent()
@@ -60,7 +57,10 @@ namespace Collektive.Unity
             if (_isEngineInit)
                 return;
             _isEngineInit = true;
+            _linkManager = GetComponent<LinkManager>();
+            _engine ??= new EngineNativeApi();
             _engine.Initialize();
+            Physics.simulationMode = SimulationMode.Script;
         }
 
         private void Update()
