@@ -1,4 +1,3 @@
-using Collektive.Unity.Data;
 using Collektive.Unity.Schema;
 
 namespace Collektive.Unity.Native
