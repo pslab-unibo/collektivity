@@ -58,7 +58,7 @@ namespace Collektive.Unity.Native
 
         public void Initialize() => InternalInitialize();
 
-        public NodeState Step(int id, SensorData sensingData)
+        public ActuatorData Step(int id, SensorData sensingData)
         {
             var encodedSensing = sensingData.ToByteArray();
             var resultPtr = Step(id, encodedSensing, encodedSensing.Length, out int outputSize);
@@ -68,7 +68,7 @@ namespace Collektive.Unity.Native
             {
                 var managedBuffer = new byte[outputSize];
                 Marshal.Copy(resultPtr, managedBuffer, 0, outputSize);
-                return NodeState.Parser.ParseFrom(managedBuffer);
+                return ActuatorData.Parser.ParseFrom(managedBuffer);
             }
             finally
             {

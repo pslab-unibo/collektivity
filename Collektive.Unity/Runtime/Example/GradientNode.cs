@@ -33,7 +33,7 @@ namespace Collektive.Unity.Example
                 // IsSource = isSource,
             };
 
-        protected override void Act(NodeState state)
+        protected override void Act(ActuatorData state)
         {
             // gradient = state.Gradient;
             // var t = Mathf.InverseLerp(0f, 30f, (float)gradient);

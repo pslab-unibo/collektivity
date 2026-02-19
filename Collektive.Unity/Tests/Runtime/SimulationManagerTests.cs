@@ -1,5 +1,4 @@
 using System.Collections;
-using Collektive.Unity.Data;
 using Collektive.Unity.Native;
 using Collektive.Unity.Schema;
 using NUnit.Framework;
@@ -32,7 +31,7 @@ namespace Collektive.Unity.Tests
                 return true;
             }
 
-            public NodeState Step(int id, SensorData data) => new NodeState();
+            public ActuatorData Step(int id, SensorData data) => new ActuatorData();
 
             public bool Subscribe(int id1, int id2)
             {

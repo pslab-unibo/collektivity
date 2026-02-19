@@ -11,11 +11,11 @@ namespace Collektive.Unity.Tests
     {
         public class TestNode : Node
         {
-            public NodeState LastReceivedState;
+            public ActuatorData LastReceivedState;
 
             public override SensorData Sense() => new SensorData();
 
-            protected override void Act(NodeState state) => LastReceivedState = state;
+            protected override void Act(ActuatorData state) => LastReceivedState = state;
 
             public float PublicGetNextRandom() => GetNextRandom();
 
@@ -53,7 +53,7 @@ namespace Collektive.Unity.Tests
         {
             var go = new GameObject();
             var node = go.AddComponent<TestNode>();
-            var testState = new NodeState();
+            var testState = new ActuatorData();
             node.OnStateReceived?.Invoke(testState);
             Assert.AreEqual(
                 testState,

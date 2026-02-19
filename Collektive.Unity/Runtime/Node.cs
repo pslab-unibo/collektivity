@@ -23,10 +23,10 @@ namespace Collektive.Unity
             private set => id = value;
         }
 
-        public Action<NodeState> OnStateReceived;
+        public Action<ActuatorData> OnStateReceived;
 
         public abstract SensorData Sense();
-        protected abstract void Act(NodeState state);
+        protected abstract void Act(ActuatorData state);
 
         protected float GetNextRandom() => (float)_prng.NextDouble();
 

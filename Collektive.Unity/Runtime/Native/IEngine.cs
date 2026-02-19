@@ -14,6 +14,6 @@ namespace Collektive.Unity.Native
 
         void Initialize();
 
-        NodeState Step(int id, SensorData sensingData);
+        ActuatorData Step(int id, SensorData sensingData);
     }
 }

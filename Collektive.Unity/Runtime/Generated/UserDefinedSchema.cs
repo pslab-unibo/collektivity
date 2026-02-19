@@ -24,16 +24,16 @@ namespace Collektive.Unity.Schema {
     static UserDefinedSchemaReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Chl1c2VyLWRlZmluZWQtc2NoZW1hLnByb3RvGgxzaGFyZWQucHJvdG8iLQoJ",
-            "Tm9kZVN0YXRlEiAKDnRhcmdldFBvc2l0aW9uGAEgASgLMgguVmVjdG9yMyJl",
-            "CgpTZW5zb3JEYXRhEhcKD3NvdXJjZUludGVuc2l0eRgBIAEoARIhCg9jdXJy",
-            "ZW50UG9zaXRpb24YAiABKAsyCC5WZWN0b3IzEhsKCW9ic3RhY2xlcxgDIAMo",
-            "CzIILlZlY3RvcjNCPAogaXQudW5pYm8uY29sbGVrdGl2ZS51bml0eS5zY2hl",
-            "bWGqAhdDb2xsZWt0aXZlLlVuaXR5LlNjaGVtYWIGcHJvdG8z"));
+            "Chl1c2VyLWRlZmluZWQtc2NoZW1hLnByb3RvGgxzaGFyZWQucHJvdG8iMAoM",
+            "QWN0dWF0b3JEYXRhEiAKDnRhcmdldFBvc2l0aW9uGAEgASgLMgguVmVjdG9y",
+            "MyJlCgpTZW5zb3JEYXRhEhcKD3NvdXJjZUludGVuc2l0eRgBIAEoARIhCg9j",
+            "dXJyZW50UG9zaXRpb24YAiABKAsyCC5WZWN0b3IzEhsKCW9ic3RhY2xlcxgD",
+            "IAMoCzIILlZlY3RvcjNCPAogaXQudW5pYm8uY29sbGVrdGl2ZS51bml0eS5z",
+            "Y2hlbWGqAhdDb2xsZWt0aXZlLlVuaXR5LlNjaGVtYWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Collektive.Unity.Shared.SharedReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Collektive.Unity.Schema.NodeState), global::Collektive.Unity.Schema.NodeState.Parser, new[]{ "TargetPosition" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Collektive.Unity.Schema.ActuatorData), global::Collektive.Unity.Schema.ActuatorData.Parser, new[]{ "TargetPosition" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Collektive.Unity.Schema.SensorData), global::Collektive.Unity.Schema.SensorData.Parser, new[]{ "SourceIntensity", "CurrentPosition", "Obstacles" }, null, null, null, null)
           }));
     }
@@ -42,16 +42,16 @@ namespace Collektive.Unity.Schema {
   }
   #region Messages
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class NodeState : pb::IMessage<NodeState>
+  public sealed partial class ActuatorData : pb::IMessage<ActuatorData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<NodeState> _parser = new pb::MessageParser<NodeState>(() => new NodeState());
+    private static readonly pb::MessageParser<ActuatorData> _parser = new pb::MessageParser<ActuatorData>(() => new ActuatorData());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<NodeState> Parser { get { return _parser; } }
+    public static pb::MessageParser<ActuatorData> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -67,7 +67,7 @@ namespace Collektive.Unity.Schema {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeState() {
+    public ActuatorData() {
       OnConstruction();
     }
 
@@ -75,15 +75,15 @@ namespace Collektive.Unity.Schema {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeState(NodeState other) : this() {
+    public ActuatorData(ActuatorData other) : this() {
       targetPosition_ = other.targetPosition_ != null ? other.targetPosition_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public NodeState Clone() {
-      return new NodeState(this);
+    public ActuatorData Clone() {
+      return new ActuatorData(this);
     }
 
     /// <summary>Field number for the "targetPosition" field.</summary>
@@ -101,12 +101,12 @@ namespace Collektive.Unity.Schema {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as NodeState);
+      return Equals(other as ActuatorData);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(NodeState other) {
+    public bool Equals(ActuatorData other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -179,7 +179,7 @@ namespace Collektive.Unity.Schema {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(NodeState other) {
+    public void MergeFrom(ActuatorData other) {
       if (other == null) {
         return;
       }

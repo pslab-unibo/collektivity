@@ -78,7 +78,7 @@ namespace Collektive.Unity.Example
             return sourceIntensity;
         }
 
-        protected override void Act(NodeState state)
+        protected override void Act(ActuatorData state)
         {
             Move(
                 new Vector3(state.TargetPosition.X, state.TargetPosition.Y, state.TargetPosition.Z)
