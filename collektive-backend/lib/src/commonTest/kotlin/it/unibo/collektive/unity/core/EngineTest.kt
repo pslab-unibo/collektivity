@@ -5,7 +5,7 @@ import it.unibo.collektive.networking.NeighborsData
 import it.unibo.collektive.networking.NoNeighborsData
 import it.unibo.collektive.networking.OutboundEnvelope
 import it.unibo.collektive.unity.core.network.NetworkManager
-import it.unibo.collektive.unity.schema.NodeState
+import it.unibo.collektive.unity.schema.ActuatorData
 import it.unibo.collektive.unity.schema.SensorData
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -20,9 +20,9 @@ class EngineTest {
     private var isProgramExecuted = false
 
     // Aggregate program that echoes the sensor value
-    private val program: Aggregate<Int>.(SensorData) -> NodeState = { sensor ->
+    private val program: Aggregate<Int>.(SensorData) -> ActuatorData = { sensor ->
         isProgramExecuted = true
-        NodeState()
+        ActuatorData()
     }
 
     class MockNetworkManager : NetworkManager {

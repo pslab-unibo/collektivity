@@ -4,23 +4,23 @@ import it.unibo.collektive.Collektive
 import it.unibo.collektive.aggregate.api.Aggregate
 import it.unibo.collektive.unity.core.network.Network
 import it.unibo.collektive.unity.core.network.NetworkManager
-import it.unibo.collektive.unity.schema.NodeState
+import it.unibo.collektive.unity.schema.ActuatorData
 import it.unibo.collektive.unity.schema.SensorData
 
 interface Engine {
-    fun step(id: Int, sensorData: SensorData): NodeState
+    fun step(id: Int, sensorData: SensorData): ActuatorData
     fun subscribe(node1: Int, node2: Int): Boolean
     fun unsubscribe(node1: Int, node2: Int): Boolean
     fun addNode(id: Int): Boolean
     fun removeNode(id: Int): Boolean
 }
 
-class EngineImpl(private val nm: NetworkManager, private val program: Aggregate<Int>.(SensorData) -> NodeState) : Engine {
+class EngineImpl(private val nm: NetworkManager, private val program: Aggregate<Int>.(SensorData) -> ActuatorData) : Engine {
 
     private var currentSensing: MutableMap<Int, SensorData> = mutableMapOf()
-    private val nodes: MutableList<Collektive<Int, NodeState>> = mutableListOf()
+    private val nodes: MutableList<Collektive<Int, ActuatorData>> = mutableListOf()
 
-    override fun step(id: Int, sensorData: SensorData): NodeState {
+    override fun step(id: Int, sensorData: SensorData): ActuatorData {
         currentSensing[id] = sensorData
         return nodes.first { it.localId == id }.cycle()
     }

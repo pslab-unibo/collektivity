@@ -1,7 +1,7 @@
 package it.unibo.collektive.unity.core
 
 import it.unibo.collektive.unity.core.network.NetworkManagerImpl
-import it.unibo.collektive.unity.schema.NodeState
+import it.unibo.collektive.unity.schema.ActuatorData
 import it.unibo.collektive.unity.schema.SensorData
 import it.unibo.collektive.unity.examples.entrypoint
 import kotlinx.cinterop.ByteVar
@@ -33,7 +33,7 @@ fun step(id: Int, rawSensing: CPointer<ByteVar>, dataSize: Int, outSize: CPointe
     require(dataSize >= 0) { "Invalid data size." }
     val sensingData = SensorData.ADAPTER.decode(rawSensing.readBytes(dataSize))
     val nodeState = engine.step(id, sensingData)
-    val byteArray = NodeState.ADAPTER.encode(nodeState)
+    val byteArray = ActuatorData.ADAPTER.encode(nodeState)
     val pinnedBuffer = nativeHeap.allocArray<ByteVar>(byteArray.size)
     byteArray.forEachIndexed { index, byte ->
         pinnedBuffer[index] = byte
