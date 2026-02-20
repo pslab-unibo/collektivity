@@ -20,7 +20,7 @@ Unity package that enables aggregate simulation through collektive framework wit
 1. Update the file at `collektive.unity/collektive-backend/lib/src/commonMain/proto/user-defined-schema.proto` with the values you want to share across the bridge Collektive-Unity;
     1. `SensorData` are the data Unity will send to Collektive;
     1. `ActuatorData` are the data Collektive sends back to Unity at each step;
-    1. these data should be specific to one node, Collektive.Unity will handle the propagation to every node of the simulation;
+    1. these data structures are defined within the scope of a single node;
 1. launch `./gradlew build` inside the `collektive-backend` directory;
     1. this triggers the proto compiler to recompute data structures so that you can use them in your code;
 1. update the `collketive.unity/collektive-backend/lib/src/commonMain/kotlin/it/unibo/collektive/unity/examples/UserDefinedEntrypoint.kt` file with the aggregate program you want to simulate;
