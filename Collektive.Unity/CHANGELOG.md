@@ -1,3 +1,17 @@
+## [1.1.1](https://github.com/FilippoGurioli-master-thesis/collektive.unity/compare/1.1.0...1.1.1) (2026-02-20)
+
+### Bug Fixes
+
+* set to the correct layer to let obstacle sensor work ([ae464a6](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/ae464a65cfd0e3f7d63ee11338564c43a5be67e2))
+
+### Build and continuous integration
+
+* update unity editor version for tests ([1ce40e9](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/1ce40e95acd613dc16ca5214ac1a327c1c615d4f))
+
+### General maintenance
+
+* fine tune physics material ([95a5357](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/95a5357d0aa9ed315e08fc7a27da8bcb33d74371))
+
 ## [1.1.0](https://github.com/FilippoGurioli-master-thesis/collektive.unity/compare/1.0.0...1.1.0) (2026-02-20)
 
 ### Features
