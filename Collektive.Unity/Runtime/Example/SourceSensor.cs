@@ -99,5 +99,14 @@ namespace Collektive.Unity.Example
             appliedForce = Vector3.ClampMagnitude(steering, steeringForce);
             _rb.AddForce(appliedForce, ForceMode.Force);
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (Application.isPlaying)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(transform.position, this.targetPosition);
+            }
+        }
     }
 }
