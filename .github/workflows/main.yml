@@ -105,7 +105,7 @@ jobs:
         with:
           packageMode: false
           projectPath: Sandbox.Collektive.Unity
-          unityVersion: '6000.2.15f1'
+          unityVersion: '6000.3.8f1'
           testMode: All
           artifactsPath: artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
