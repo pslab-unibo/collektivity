@@ -1,8 +1,12 @@
 # Collektive.Unity
 
-Unity package that enables aggregate simulation through collektive framework with FFI communication 
+Unity package that enables aggregate simulation through collektive framework with FFI communication
 
 ## Requirements
+
+- Unity 6000.3.8f1
+- java 21
+- npm 11.10.0 and NodeJS v25.6.1
 
 ## To launch builtin examples
 
@@ -25,4 +29,3 @@ Unity package that enables aggregate simulation through collektive framework wit
 1. add the `Simulation Manager` prefab to the scene (can be found at `collektive.unity/Collektive.Unity/Runtime/Prefabs/Simulation Manager.prefab`);
 1. create a new `MonoBehaviour` that interact with the `SimulationManager.Instance` singleton APIs to choose a neighborhood logic (see the `ProximityNeighborhoodBehaviour` in the `collektive.unity/Collektive.Unity/Runtime/Example/` directory for an example)
 1. start your simulation by pressing the start button at the center top of the unity editor.
-
