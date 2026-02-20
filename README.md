@@ -29,6 +29,44 @@ which sends back its computation result as `Actuation Data`.
 
 ![High-level architecture representation](images/architecture.svg)
 
+## Directory structure
+The directory structure for the Collektivity project is organized as follows:
+
+```
+collektivity/
+├── collektive-backend/                                     # Backend library for Collektive computation
+│   ├── lib/
+│   │   ├── src/
+│   │   │   ├── commonMain/
+│   │   │   │   ├── kotlin/
+│   │   │   │   │   └── it/unibo/collektive/unity/examples  # Collektive entrypoint for the aggregrate program
+│   │   │   │   └── proto/
+│   │   │   │       └── user-defined-schema.proto           # Protobuf definition for user defined data schema
+│   │   │   └── ...
+│   └── ...
+├── Collektive.Unity/                                       # Unity engine integration to invoke Collektive computation
+│   ├── Runtime/
+│   │   ├── Node.cs                                         # Unity Game Object Behavior, allows the binding with Collektive computation
+│   │   └── ...
+│   ├── Example/                                            # Example for a Collektive gradient descent logic specialization of the `Node` class
+│   └── ...
+├── rich-scenario/                                          # Unity project for Rick Scenario Execution
+│   ├── Assets/
+│   │   ├── Scenes/
+│   │   │   ├── Oasis/
+│   │   │   │   └── Oasis.unity
+│   │   │   └── ...
+│   │   └── ...
+│   └── ...
+├── Sandbox.Collektive.Unity/                               # Unity project for Simple Scenario Execution
+│   ├── Assets/
+│   │   ├── Scenes/
+│   │   │   └── Robots and Obstacles.unity
+│   │   └── ...
+│   └── ...
+└── ...
+```
+
 ## Requirements for executing the simulations
 
 - Linux Operating System
