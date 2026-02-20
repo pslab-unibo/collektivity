@@ -1,3 +1,83 @@
+## [1.1.0](https://github.com/FilippoGurioli-master-thesis/collektive.unity/compare/1.0.0...1.1.0) (2026-02-20)
+
+### Features
+
+* add balls-on-the-beach project ([6c0341d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/6c0341d36f9064764fb75641c32acee66733fb1d))
+* add ugv to the scene ([0148718](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/0148718913537c0a11375db468ae04c085eadc34))
+* remove global data from backend ([05441db](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/05441dbdab0c085b184aa758aa9babf9f9c4e904))
+* remove global data from frontend ([bc61221](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/bc612217647ec5fdb69ea7bdb729747e7d53ff44))
+
+### Dependency updates
+
+* **core-deps:** update dependency com.unity.ai.navigation to v2.0.10 ([#26](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/26)) ([0f6968c](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/0f6968c98e8ec9aae3b2cb5d6ed8e42345ba891a))
+* **core-deps:** update dependency com.unity.collab-proxy to v2.11.3 ([#25](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/25)) ([f1a1c2a](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/f1a1c2a12b6afb4d197a9ae8987e064adad21854))
+* **core-deps:** update dependency com.unity.ide.rider to v3.0.39 ([#23](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/23)) ([0c69f46](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/0c69f46d06310a98a8676f77a7729aa9639d9bfd))
+* **core-deps:** update dependency com.unity.ide.visualstudio to v2.0.27 ([#27](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/27)) ([6acf843](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/6acf843360e59f1bb6230f6f376bc1aba63159e4))
+* **core-deps:** update dependency unity editor ([#38](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/38)) ([f289c96](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/f289c968c9b590e566ce70aa9360e70d890c53ba))
+* **core-deps:** update dependency unity editor ([#5](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/5)) ([53d0c1d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/53d0c1d7b5b19664ed40dcd0221824d60b2a2128))
+* **deps:** update dependency com.google.guava:guava to v33.4.8-jre ([#1](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/1)) ([54f5458](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/54f54586c1ad6b7785d907015424760e8f03b633))
+* **deps:** update dependency com.google.guava:guava to v33.5.0-jre ([#6](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/6)) ([2b4d066](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/2b4d0661af3b46572d8d9806f42fbcdda348c7ea))
+* **deps:** update dependency com.squareup.wire:wire-runtime to v5.2.1 ([#7](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/7)) ([a2004c5](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/a2004c51ac44d4f23fa98ff5a99e3c4e282429ae))
+* **deps:** update dependency com.squareup.wire:wire-runtime to v5.3.11 ([#8](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/8)) ([9dd6177](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/9dd617734a6469adff3525c049859dfb417744f5))
+* **deps:** update dependency com.squareup.wire:wire-runtime to v5.4.0 ([#9](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/9)) ([c23ec1c](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/c23ec1ce6b557cbdae3902e2d7362e7a9a88ee99))
+* **deps:** update dependency com.squareup.wire:wire-runtime to v5.5.0 ([#10](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/10)) ([fbcfaaa](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/fbcfaaa352fbcd4e0aa3879afecf24877d551360))
+* **deps:** update dependency csharpier to v1.2.6 ([#28](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/28)) ([484749d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/484749dd0b45a91559e29b60b6d20c18b4764c00))
+* **deps:** update dependency dotnet-sonarscanner to v11.1.0 ([#29](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/29)) ([9581fa7](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/9581fa783f8fac86100c005b236ba96e4c22d7d7))
+* **deps:** update dependency it.unibo.collektive:collektive-dsl to v27.3.3 ([#2](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/2)) ([1dfa94a](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/1dfa94a14fc2b39471a75b401cd75310e59c5fde))
+* **deps:** update dependency it.unibo.collektive:collektive-dsl to v27.4.0 ([#11](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/11)) ([32ff379](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/32ff379e23859256ccfa3f70e1fdec268052dfaf))
+* **deps:** update dependency org.junit.jupiter:junit-jupiter-engine to v5.12.2 ([#3](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/3)) ([22fcd30](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/22fcd3088d31ee9a57579d4af6516a967f89f1a2))
+* **deps:** update dependency org.junit.jupiter:junit-jupiter-engine to v5.13.4 ([#12](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/12)) ([ad003c0](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/ad003c04ed8c13992ffb70fd8de75e969410a40d))
+* **deps:** update dependency org.junit.jupiter:junit-jupiter-engine to v5.14.2 ([#13](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/13)) ([30777cc](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/30777cc074ebe783c064185b874aff50056bb0c3))
+* **deps:** update dependency org.junit.jupiter:junit-jupiter-engine to v6 ([#21](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/21)) ([9a10339](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/9a10339ce8273ccfcd529f2dd7af7d9d24119ed5))
+* **deps:** update dependency org.junit.jupiter:junit-jupiter-engine to v6.0.3 ([#39](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/39)) ([bf69388](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/bf69388f03ecf7e93a7a17dacfcf1c66076268ad))
+* **deps:** update gradle to v9.3.1 ([#14](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/14)) ([a0087c3](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/a0087c3b7ed34c532878a5c83a5b3b1824bca75c))
+* **deps:** update plugin com.squareup.wire to v5.4.0 ([#17](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/17)) ([7d85f12](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/7d85f1261c16606c8c763de872114f8b9f2fcd3a))
+* **deps:** update plugin com.squareup.wire to v5.5.0 ([#18](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/18)) ([fca135b](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/fca135b4743ed7d2d6cdbe8e59535591b43f0c68))
+* **deps:** update plugin kotlin-jvm to v2.2.21 ([#4](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/4)) ([96cdfb5](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/96cdfb55422f22e66fe79ffe60a44e8bee6a5a34))
+* **deps:** update plugin kotlin-jvm to v2.3.10 ([#19](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/19)) ([5081009](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/5081009407df3f2b2c13c7e239d62a927e7f6a1d))
+
+### Bug Fixes
+
+* remove all references to global data in frontend ([90b3b70](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/90b3b70776aaeae2a944f5f0b51b9e4ebc14f423))
+
+### Documentation
+
+* add "to launch builtin example" ([ab863c5](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/ab863c5c05ae44397fa1974f176e852f3246df50))
+* add requirements to the readme ([f20bf4b](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/f20bf4bed9c6f07d902c43a7c41fad383250705a))
+* correct indentation ([d7c748b](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/d7c748bf8e1d698486a118fadb718875d6ae47a4))
+* update readme ([980fbdd](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/980fbdd410cc6a5fb62924e4bc08755c66830aca))
+* update readme with "to create a new simulation" paragraph ([13f5544](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/13f55446954cc9972337d3b9b52b43af6c998829))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v5 ([#30](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/30)) ([59e3611](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/59e3611d81bb6f1c23e73bd0c0fcde8830724dea))
+* **deps:** update actions/checkout action to v6 ([#31](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/31)) ([1f00897](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/1f0089768511015bbc0700d184ae1de809baede8))
+* **deps:** update actions/setup-dotnet action to v5 ([#34](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/34)) ([4dd4e3d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/4dd4e3d0dc25fe68938271dd2caa43963b5483e9))
+* **deps:** update actions/setup-java action to v5 ([#32](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/32)) ([8a5bc15](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/8a5bc15e1fa261b0a7cf9e856004864120ad361e))
+* **deps:** update actions/setup-node action to v5 ([#33](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/33)) ([f2a759b](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/f2a759befd2d33aff41792279406451758bc9c7f))
+* **deps:** update actions/setup-node action to v6 ([#35](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/35)) ([9110794](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/91107947d7abf781af5309bdfcf2900eb1b75235))
+* **deps:** update actions/upload-artifact action to v5 ([#36](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/36)) ([e7c56dc](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/e7c56dcd4e80d562576607caf5d37706c32805b5))
+* **deps:** update actions/upload-artifact action to v6 ([#37](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/37)) ([00fefd3](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/00fefd3d15f433aac96c6a6a7b5036751a332d7a))
+* **deps:** update dependency ubuntu to v24 ([#24](https://github.com/FilippoGurioli-master-thesis/collektive.unity/issues/24)) ([e22168d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/e22168d3fe5194825b7b0bcdf48b55926e0c8612))
+* target windows too ([04770f3](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/04770f3eacef5c5100b073665cabc22490929ca2))
+* target windows too in frontend ([ea4e2dd](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/ea4e2dd2d89b30100e3ca3e74d19dc55f0dc7af0))
+
+### General maintenance
+
+* add a readonly in the source sensor inspector ([7018cf9](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/7018cf94a3b3de0c88e618364b691729d9437cae))
+* add node counting in simulation manager ([c126d74](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/c126d74aaa746712fa8a46ce8a5861f521ad7c5b))
+* add ugv ([e56c08d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/e56c08d5a190fa4d789c2210a4178e759261256a))
+* configure scene balls on the beach ([6c6118b](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/6c6118b0452bb0aa88621b5b2b4682e674b1b0a1))
+* create source node prefab ([adb2fc7](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/adb2fc7f5340be38409adc8fe33a231e0769c047))
+* merge main to develop ([e7e8890](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/e7e8890895821883ac0fa7825df7f672437f4441))
+* minor ([2091f07](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/2091f0753a90260009aa5b830fd3b4b0adfbec01))
+
+### Refactoring
+
+* **backend:** rename node state -> actuator data ([1f2115d](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/1f2115d308e6d0205384d48e28216ceb474940fc))
+* **frontend:** rename node state -> actuator data ([f79a5b5](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/f79a5b531a8379afb78303e58110a533ca31fe5b))
+* rename botb -> rich-scenario ([629f15c](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/629f15c6ffa4a75cb348442994c79b28945ced2b))
+
 ## 1.0.0 (2026-02-10)
 
 ### Features
