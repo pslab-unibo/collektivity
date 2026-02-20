@@ -47,8 +47,9 @@ collektivity/
 ├── Collektive.Unity/                                       # Unity engine integration to invoke Collektive computation
 │   ├── Runtime/
 │   │   ├── Node.cs                                         # Unity Game Object Behavior, allows the binding with Collektive computation
+│   │   ├── Example/                                        # Example for a Collektive gradient descent logic specialization 
 │   │   └── ...
-│   ├── Example/                                            # Example for a Collektive gradient descent logic specialization of the `Node` class
+│   of the `Node` class
 │   └── ...
 ├── rich-scenario/                                          # Unity project for Rick Scenario Execution
 │   ├── Assets/
