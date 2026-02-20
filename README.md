@@ -8,7 +8,12 @@ Unity package that enables aggregate simulation through collektive framework wit
 - java 21
 - npm 11.10.0 and NodeJS v25.6.1
 
-## To launch builtin examples
+## To launch builtin example
+
+1. clone the repo and open the unity editor pointing at the `collektive.unity/rich-scenario` directory;
+1. in the top bar click `Tools` button and then launch both `Proto > Generate` and `Native > Rebuild backend`;
+1. from the `project` tab (usually at the bottom of the editor) open the `collektive.unity/rich-scenario/Assets/Scenes/Oasis` directory and double click on the `Oasis.unity` file to open the scene;
+1. start the simulation by pressing the start button at the center top of the unity editor.
 
 ## To create a new simulation
 
