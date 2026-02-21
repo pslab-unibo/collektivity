@@ -79,7 +79,7 @@ collektivity/
 0. Clone the repository
 
 ### Simple Scenario
-1. Open an unity editor project pointing at the `collektivity/rich-scenario` directory
+1. Open an unity editor project pointing at the `collektivity/Sandbox.Collektive.Unity` directory
 2. On the top bar click `Tools` button and then launch both `Proto > Generate` and `Native > Rebuild backend`
 3. From the `project` tab (usually at the bottom of the editor) open the `Assets/Scenes` directory and double click on the `Robots and Obstacles.unity` file to open the scene
 4. Start the simulation by pressing the start button at the center top of the unity editor.
@@ -87,7 +87,7 @@ collektivity/
 ![simple scenario simulation snapshot](images/simple.png)
 
 ### Rich Scenario
-1. Open an unity editor project pointing at the `collektivity/Sandbox.Collektive.Unity` directory 
+1. Open an unity editor project pointing at the `collektivity/rich-scenario` directory 
 2. On the top bar click `Tools` button and then launch both `Proto > Generate` and `Native > Rebuild backend` 
 3. From the `project` tab (usually at the bottom of the editor) open the `Assets/Scenes/Oasis` directory and double click on the `Oasis.unity` file to open the scene 
 4. Start the simulation by pressing the start button at the center top of the unity editor.
