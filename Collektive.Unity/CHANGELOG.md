@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/FilippoGurioli-master-thesis/collektive.unity/compare/1.1.1...1.1.2) (2026-02-20)
+
+### Bug Fixes
+
+* enable view of all 100 nodes in simple scenario simulation ([f397bae](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/f397bae8ac2098fd3463f716e7aa370c064d5b7e))
+* properly configure .gitignore ([6609a13](https://github.com/FilippoGurioli-master-thesis/collektive.unity/commit/6609a13e82244040b030c99030eccfe5810bc500))
+
 ## [1.1.1](https://github.com/FilippoGurioli-master-thesis/collektive.unity/compare/1.1.0...1.1.1) (2026-02-20)
 
 ### Bug Fixes

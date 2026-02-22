@@ -17,6 +17,9 @@ namespace Collektive.Unity.Example
         [SerializeField]
         private float steeringForce = 10;
 
+        // [SerializeField]
+        // private float rotationSpeed = 10;
+
         [SerializeField]
         private float intensity = 100;
 
@@ -98,6 +101,19 @@ namespace Collektive.Unity.Example
             var steering = desiredVelocity - _rb.linearVelocity;
             appliedForce = Vector3.ClampMagnitude(steering, steeringForce);
             _rb.AddForce(appliedForce, ForceMode.Force);
+            // if (_rb.linearVelocity.sqrMagnitude > 0.01f)
+            // {
+            //     var targetRotation =
+            //         Quaternion.LookRotation(_rb.linearVelocity.normalized)
+            //         * Quaternion.Euler(-90f, 0f, 0f);
+            //     var rotationError = targetRotation * Quaternion.Inverse(transform.rotation);
+            //     rotationError.ToAngleAxis(out float angle, out Vector3 axis);
+            //     if (angle > 180f)
+            //         angle -= 360f;
+            //     var targetAngularVelocity = axis * (angle * Mathf.Deg2Rad * rotationSpeed);
+            //     var torque = targetAngularVelocity - _rb.angularVelocity;
+            //     _rb.AddTorque(torque, ForceMode.VelocityChange);
+            // }
         }
 
         private void OnDrawGizmosSelected()
