@@ -1,6 +1,6 @@
 {
   "name": "it.unibo.collektive.unity",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unity package that enables aggregate simulation through Collektive framework with FFI communication",
   "displayName": "Collektivity",
   "unity": "6000.2",

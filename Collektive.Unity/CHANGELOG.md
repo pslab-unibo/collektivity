@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/pslab-unibo/collektivity/compare/1.0.1...1.0.2) (2026-02-23)
+
+### Bug Fixes
+
+* **ci:** remove documentation step ([5ffa7ef](https://github.com/pslab-unibo/collektivity/commit/5ffa7efc6ca5f6a0df25de6f4e749ba5e1b6f2ed))
+
 ## [1.0.1](https://github.com/pslab-unibo/collektivity/compare/1.0.0...1.0.1) (2026-02-23)
 
 ### Bug Fixes
