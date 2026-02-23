@@ -1,3 +1,17 @@
+## [1.0.1](https://github.com/pslab-unibo/collektivity/compare/1.0.0...1.0.1) (2026-02-23)
+
+### Bug Fixes
+
+* change hardcoded url ([c106e1a](https://github.com/pslab-unibo/collektivity/commit/c106e1a9245b4c7d950ba86d27d4b7a1f8b3d48c))
+* README ([ba34851](https://github.com/pslab-unibo/collektivity/commit/ba34851b8fe28056debfe02b3f8be9ab4ff2774d))
+
+### General maintenance
+
+* add project structure in readme ([d87c62e](https://github.com/pslab-unibo/collektivity/commit/d87c62eb09e5e9426e47e958032649998beff65d))
+* fine tune to have better simulation ([7948c11](https://github.com/pslab-unibo/collektivity/commit/7948c11f7b8e266d9bf6257889d5b1412bff8b2b))
+* **release:** 1.1.2 [skip ci] ([df783f1](https://github.com/pslab-unibo/collektivity/commit/df783f1e28bd780dccbbd4b4188678838d5cd7f2))
+* typo in project structure readme ([941b211](https://github.com/pslab-unibo/collektivity/commit/941b211cbb94e80875250323b4b8fa22c1a88353))
+
 ## [1.1.2](https://github.com/FilippoGurioli-master-thesis/collektive.unity/compare/1.1.1...1.1.2) (2026-02-20)
 
 ### Bug Fixes
