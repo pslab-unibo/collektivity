@@ -6,7 +6,7 @@
     ":semanticCommitTypeAll(chore)",
     "abandonments:recommended"
   ],
-  "assignees": [ "FilippoGurioli" ],
+  "assignees": [ "anitvam" ],
   "automerge": true,
   "dependencyDashboard": true,
   "abandonmentThreshold": "3 years",

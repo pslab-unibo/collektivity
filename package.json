@@ -1,19 +1,19 @@
 {
-  "name": "unity-package-template",
+  "name": "Collektivity",
   "version": "1.4.0",
-  "description": "A template for Unity projects. It contains the cutting edge features regarding development automation providing a easy way to customize and start up quickly.",
+  "description": "Unity package that enables aggregate simulation through Collektive framework with FFI communication",
   "keywords": [
     "template",
     "unity",
     "devops"
   ],
-  "homepage": "https://github.com/FilippoGurioli-master-thesis/unity-package-template#readme",
+  "homepage": "https://github.com/pslab-unibo/collektivity#readme",
   "bugs": {
-    "url": "https://github.com/FilippoGurioli-master-thesis/unity-package-template/issues"
+    "url": "https://github.com/pslab-unibo/collektivity/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/FilippoGurioli-master-thesis/collektive.unity.git"
+    "url": "git+ssh://git@github.com/pslab-unibo/collektivity.git"
   },
   "license": "MIT",
   "author": "Filippo Gurioli",
