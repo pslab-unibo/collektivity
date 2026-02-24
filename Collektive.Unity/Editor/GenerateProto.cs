@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using Debug = UnityEngine.Debug;
-using System.Runtime.InteropServices;
 
 namespace Collektive.Unity.Editor
 {
@@ -77,8 +76,11 @@ namespace Collektive.Unity.Editor
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            GenerateProto.Log("Generating cs from proto files");
-            GenerateProto.Generate();
+            if (Environment.GetEnvironmentVariable("CI") != "true")
+            {
+                GenerateProto.Log("Generating cs from proto files");
+                GenerateProto.Generate();
+            }
         }
     }
 }

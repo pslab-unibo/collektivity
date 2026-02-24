@@ -4,6 +4,9 @@ using System.IO;
 using UnityEditor;
 using Debug = UnityEngine.Debug;
 using System.Runtime.InteropServices;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
+using System;
 
 namespace Collektive.Unity.Editor
 {
@@ -123,6 +126,17 @@ namespace Collektive.Unity.Editor
                 return;
             }
             importer.SaveAndReimport();
+        }
+    }
+
+    public sealed class BuildBackendPreprocessor : IPreprocessBuildWithReport
+    {
+        public int callbackOrder => 0;
+
+        public void OnPreprocessBuild(BuildReport report)
+        {
+            if (Environment.GetEnvironmentVariable("CI") != "true")
+                BackendBuilder.RebuildNativeLibrary();
         }
     }
 }
