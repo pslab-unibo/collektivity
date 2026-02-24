@@ -94,6 +94,8 @@ jobs:
             Library-${{ matrix.targetPlatform }}-
       - name: Build Unity Project
         uses: game-ci/unity-builder@v4
+        env:
+          CI: "true" # needed to skip native build and protoc
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: ./Sandbox.Collektive.Unity
