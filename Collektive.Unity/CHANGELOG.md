@@ -1,3 +1,14 @@
+## [1.1.0](https://github.com/pslab-unibo/collektivity/compare/1.0.2...1.1.0) (2026-02-24)
+
+### Features
+
+* add compatibility with mac os ([a64c83f](https://github.com/pslab-unibo/collektivity/commit/a64c83fc3e8836cca223870a3e518679f2611986))
+
+### General maintenance
+
+* fine tune scene to use balls instead of ugv ([6ce5bfd](https://github.com/pslab-unibo/collektivity/commit/6ce5bfd10c35c89370047e0d513bca2c07b9ff8e))
+* set 50 balls in scene ([2c21708](https://github.com/pslab-unibo/collektivity/commit/2c2170820ff8a304ab762fa3e539167db22be1e6))
+
 ## [1.0.2](https://github.com/pslab-unibo/collektivity/compare/1.0.1...1.0.2) (2026-02-23)
 
 ### Bug Fixes
