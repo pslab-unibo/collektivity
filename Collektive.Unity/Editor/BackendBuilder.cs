@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
@@ -15,7 +14,18 @@ namespace Collektive.Unity.Editor
         private static string GradleExecutable =>
             Path.Combine(KotlinProjectPath, IsWindows ? "gradlew.bat" : "gradlew");
 
-        private const string GradleTask = "assemble";
+        private static readonly string GradleTask =
+            "linkReleaseShared"
+            + (
+                IsWindows ? "Windows"
+                : IsMac
+                    ? (
+                        RuntimeInformation.ProcessArchitecture == Architecture.Arm64
+                            ? "MacosArm64"
+                            : "MacosX64"
+                    )
+                : "Linux"
+            );
         private static bool IsWindows => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
         private static bool IsMac => RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
 
