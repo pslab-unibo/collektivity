@@ -1,3 +1,17 @@
+## [1.1.1](https://github.com/pslab-unibo/collektivity/compare/1.1.0...1.1.1) (2026-02-24)
+
+### Bug Fixes
+
+* add missing lock scripts for mac ([bfdd89f](https://github.com/pslab-unibo/collektivity/commit/bfdd89facc40e57d3c6eb7aeb234be6da60fe544))
+* skip native build and protoc compilation if in CI ([203ec50](https://github.com/pslab-unibo/collektivity/commit/203ec50f679b74412c7ba5145f76a91ff3bd1656))
+* update backend builder to launch os-dependent task ([2f3c060](https://github.com/pslab-unibo/collektivity/commit/2f3c0600a9e72ea91348de45db7a906a6b205b0d))
+
+### Build and continuous integration
+
+* propagate CI variable to game-ci container ([3498cde](https://github.com/pslab-unibo/collektivity/commit/3498cdeafedfe8194d5291a75256f974d549614c))
+* update how backend is built ([803a429](https://github.com/pslab-unibo/collektivity/commit/803a4299751e907081eccc859fd3b63c3778b252))
+* update pipeline to build also for other OSes ([5da329d](https://github.com/pslab-unibo/collektivity/commit/5da329d352443e3361d892ea12ba27f465730d10))
+
 ## [1.1.0](https://github.com/pslab-unibo/collektivity/compare/1.0.2...1.1.0) (2026-02-24)
 
 ### Features
