@@ -70,9 +70,38 @@ collektivity/
 
 ## Requirements for executing the simulations
 
-- Linux Operating System
+- Linux or macOS Operating Systems
 - Unity 6000.3.8f1, downloadable from [Unity Hub](https://docs.unity3d.com/hub/manual/InstallHub.html)
 - Java 21
+
+## Configure your environment for executing the simulations
+
+1. **Install Java 21**:
+    - Verify the installation with: `java -version`. It should print a version string containing `21`.
+2. **Install Unity Hub**:
+    - Follow the official instructions from [https://unity.com/download](https://unity.com/download).
+    - Launch Unity Hub.
+    - Create a Unity account and log in.
+3. **Install Unity Editor 6000.3.8f1**:
+    - Open Unity Hub.
+    - Go to the `Installs` tab.
+    - Click `Install Editor`.
+    - Select version `6000.3.8f1` from the list and install it.
+4. **Import the Project**:
+    - Clone the project repository using `git clone git@github.com:pslab-unibo/collektivity.git`
+    - In Unity Hub, go to the \texttt{Projects} tab.
+    - Click `Add` and `Add Project from Disk`.
+    - Browse to the `Sandbox.Collektive.Unity` folder in the artefact.
+    - Select it and confirm.
+    - Install the recommended Unity packages if prompted (the installation may take a few minutes).
+5. **Open the Project in Unity Editor**:
+    - Double-click the project entry in Unity Hub.
+    - Read and accept the Unity Editor Software terms and conditions if prompted.
+    - Unity Editor will launch and load the project (note that it is not executable yet).
+    - In the top bar, click `Tools`, then run both `Proto > Generate` and `Native > Rebuild backend`.
+        - If the environment does not respond after two minutes, send a kill signal to the Unity Editor process and restart it, then repeat this step.
+    - In the `Project` tab, navigate to `Assets/Scenes` and double-click `Robots and Obstacles.unity` to open the scene.
+    - Press the `Start` button at the top center of the Unity Editor to launch the simulation.
 
 ## Instructions to launch the builtin examples
 
