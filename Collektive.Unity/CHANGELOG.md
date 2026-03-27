@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/pslab-unibo/collektivity/compare/1.1.1...1.1.2) (2026-03-27)
+
+### Documentation
+
+* fix typo in readme ([4631aed](https://github.com/pslab-unibo/collektivity/commit/4631aed88ef01318afdb2f054bdb0cebaca58008))
+
+### General maintenance
+
+* Update README ([e6b4d52](https://github.com/pslab-unibo/collektivity/commit/e6b4d5248db4dd8a94d65274e61130b07df40f69))
+
 ## [1.1.1](https://github.com/pslab-unibo/collektivity/compare/1.1.0...1.1.1) (2026-02-24)
 
 ### Bug Fixes
