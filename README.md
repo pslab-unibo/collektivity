@@ -123,7 +123,7 @@ collektivity/
 
 ![oasis scenario simulation snapshot](images/oasis.png)
 
-## Create a new cusotm simulation
+## Create a new custom simulation
 
 1. Update the file at `collektivity/collektive-backend/lib/src/commonMain/proto/user-defined-schema.proto` indicating the data schema for `SensorData` and `ActuatorData`
     1. `SensorData` the data structure Unity will send to the Collektive computation 
